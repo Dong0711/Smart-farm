@@ -1,14 +1,9 @@
-// // ignore_for_file: prefer_const_constructors
-// //import 'dart:js_util';
-// import 'dart:ffi';
-
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-import 'package:farm/page/home_page.dart';
+import 'package:farm/page/MainPage.dart';
 import 'package:flutter/material.dart';
 import 'package:farm/components/My_button.dart';
 import 'package:farm/components/My_text_field.dart';
 import 'package:farm/components/Square_title.dart';
+import 'package:farm/config/theme/AppColor.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -75,7 +70,7 @@ class LoginPage extends StatelessWidget {
                 fontSize: 20,
                 onPressed: () {
                   Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => HomePage()));
+                      MaterialPageRoute(builder: (context) => MainPage()));
                 },
               ),
             ),
