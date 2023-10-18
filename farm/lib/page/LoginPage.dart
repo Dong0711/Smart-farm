@@ -5,12 +5,21 @@ import 'package:farm/components/My_text_field.dart';
 import 'package:farm/components/Square_title.dart';
 import 'package:farm/config/theme/AppColor.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   // text editing controllers
   final usernameController = TextEditingController();
+
   final passwordController = TextEditingController();
+
+  bool _showPass = true;
+
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -33,18 +42,41 @@ class LoginPage extends StatelessWidget {
             SizedBox(
               height: screenHeight * 0.04,
             ),
-            MyTextField(
-                controller: usernameController,
-                hintText: 'Tên đăng nhập',
-                obscureText: false),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: MyTextField(
+                  controller: usernameController,
+                  hintText: 'Tên đăng nhập',
+                  obscureText: false),
+            ),
             SizedBox(
               height: 15,
             ),
 
-            MyTextField(
-                controller: passwordController,
-                hintText: 'Mật khẩu',
-                obscureText: true),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child:
+                  Stack(alignment: AlignmentDirectional.centerEnd, children: [
+                MyTextField(
+                    controller: passwordController,
+                    hintText: 'Mật khẩu',
+                    obscureText: _showPass),
+                TextButton(
+                    style: TextButton.styleFrom(
+                      onSurface: Colors.transparent,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _showPass = !_showPass;
+                      });
+                    },
+                    child: Icon(
+                      _showPass ? Icons.visibility_off : Icons.visibility,
+                      color: Colors.black,
+                    ))
+              ]),
+            ),
+
             SizedBox(
               height: 15,
             ),
