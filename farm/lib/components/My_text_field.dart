@@ -6,12 +6,13 @@ class MyTextField extends StatelessWidget {
   final controller;
   final String hintText;
   final bool obscureText;
-
+  final Icon icon;
   const MyTextField({
     super.key,
     required this.controller,
     required this.hintText,
     required this.obscureText,
+    required this.icon,
   });
 
   @override
@@ -32,6 +33,7 @@ class MyTextField extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(10))),
         fillColor: Color.fromRGBO(217, 217, 217, 1),
         filled: true,
+        prefixIcon: icon,
         hintText: hintText,
       ),
     );

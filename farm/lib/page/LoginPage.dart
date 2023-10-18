@@ -45,9 +45,11 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: MyTextField(
-                  controller: usernameController,
-                  hintText: 'Tên đăng nhập',
-                  obscureText: false),
+                controller: usernameController,
+                hintText: 'Tên đăng nhập',
+                obscureText: false,
+                icon: Icon(Icons.email),
+              ),
             ),
             SizedBox(
               height: 15,
@@ -58,9 +60,11 @@ class _LoginPageState extends State<LoginPage> {
               child:
                   Stack(alignment: AlignmentDirectional.centerEnd, children: [
                 MyTextField(
-                    controller: passwordController,
-                    hintText: 'Mật khẩu',
-                    obscureText: _showPass),
+                  controller: passwordController,
+                  hintText: 'Mật khẩu',
+                  obscureText: _showPass,
+                  icon: Icon(Icons.password),
+                ),
                 TextButton(
                     style: TextButton.styleFrom(
                       onSurface: Colors.transparent,
