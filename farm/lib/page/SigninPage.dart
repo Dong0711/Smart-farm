@@ -1,3 +1,4 @@
+import 'package:farm/page/LoginPage.dart';
 import 'package:farm/page/MainPage.dart';
 import 'package:flutter/material.dart';
 import 'package:farm/components/My_button.dart';
@@ -34,11 +35,10 @@ class _SigninPageState extends State<SigninPage> {
           child: Column(children: [
             Container(
               width: screenWidth,
-              height: screenHeight * 0.3,
+              height: screenHeight * 0.2,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('lib/images/backgroundhome.png'),
-                      fit: BoxFit.cover)),
+                      image: AssetImage('lib/images/logodlu.png'))),
               // child: Text('this is container'),
             ),
             SizedBox(
@@ -56,7 +56,18 @@ class _SigninPageState extends State<SigninPage> {
             SizedBox(
               height: 15,
             ),
-
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: MyTextField(
+                controller: emailController,
+                hintText: 'Email',
+                obscureText: false,
+                icon: Icon(Icons.email),
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child:
@@ -81,6 +92,9 @@ class _SigninPageState extends State<SigninPage> {
                       color: Colors.black,
                     ))
               ]),
+            ),
+            SizedBox(
+              height: 15,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
@@ -116,9 +130,9 @@ class _SigninPageState extends State<SigninPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: const [
                   Text(
-                    'Quên mật khẩu, tài khoản?',
+                    'QUÊN MẬT KHẨU?',
                     style: TextStyle(color: Colors.grey),
-                  ),
+                  )
                 ],
               ),
             ),
@@ -128,11 +142,11 @@ class _SigninPageState extends State<SigninPage> {
 
             Container(
               child: Mybutton(
-                text: 'ĐĂNG NHẬP',
+                text: 'ĐĂNG KÝ',
                 fontSize: 20,
                 onPressed: () {
                   Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => MainPage()));
+                      MaterialPageRoute(builder: (context) => LoginPage()));
                 },
               ),
             ),
@@ -186,11 +200,11 @@ class _SigninPageState extends State<SigninPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Chưa có tài khoản? ',
+                  'ĐÃ CÓ TÀI KHOẢN? ',
                   style: TextStyle(color: Colors.grey),
                 ),
                 Text(
-                  'Tạo ngay!',
+                  'ĐĂNG NHẬP NGAY!',
                   style: TextStyle(
                       color: Colors.blue, fontWeight: FontWeight.bold),
                 )
