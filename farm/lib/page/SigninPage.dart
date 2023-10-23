@@ -124,18 +124,27 @@ class _SigninPageState extends State<SigninPage> {
             SizedBox(
               height: 15,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: const [
-                  Text(
-                    'QUÊN MẬT KHẨU?',
-                    style: TextStyle(color: Colors.grey),
-                  )
-                ],
+            Row(children: [
+              Expanded(
+                  child: Text(
+                'GHI NHỚ ĐĂNG NHẬP',
+                style: TextStyle(color: Colors.black),
+              )),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                child: Text(
+                  "Đăng nhập bằng phương thức khác",
+                  style: TextStyle(color: Colors.grey),
+                ),
               ),
-            ),
+              Expanded(
+                  child: Divider(
+                thickness: 1,
+                color: Colors.grey,
+              )),
+            ]
+                // children: [Expanded(child: child)],
+                ),
             SizedBox(
               height: screenHeight * 0.03,
             ),
