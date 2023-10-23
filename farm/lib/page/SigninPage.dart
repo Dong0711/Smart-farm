@@ -5,6 +5,7 @@ import 'package:farm/components/My_button.dart';
 import 'package:farm/components/My_text_field.dart';
 import 'package:farm/components/Square_title.dart';
 import 'package:farm/config/theme/AppColor.dart';
+import 'package:farm/components/Mytext.dart';
 
 class SigninPage extends StatefulWidget {
   SigninPage({super.key});
@@ -17,9 +18,11 @@ class _SigninPageState extends State<SigninPage> {
   // text editing controllers
   final usernameController = TextEditingController();
 
+  final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
 
-  final emailController = TextEditingController();
+  final password1Controller = TextEditingController();
 
   bool _showPass = true;
 
@@ -35,14 +38,35 @@ class _SigninPageState extends State<SigninPage> {
           child: Column(children: [
             Container(
               width: screenWidth,
-              height: screenHeight * 0.2,
+              height: screenHeight * 0.15,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('lib/images/logodlu.png'))),
+                      image: AssetImage('lib/images/Farm.png'))),
               // child: Text('this is container'),
             ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
+              child: MyText(
+                text: 'ĐĂNG KÝ',
+                color: AppColor.primary[90],
+                fontSize: 35,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             SizedBox(
-              height: screenHeight * 0.04,
+              height: 0,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
+              child: MyText(
+                text: 'TRỞ THÀNH THÀNH VIÊN BẰNG CÁCH TẠO TÀI KHOẢN',
+                color: AppColor.primary[90],
+                fontSize: 10,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: 20,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
@@ -50,7 +74,7 @@ class _SigninPageState extends State<SigninPage> {
                 controller: usernameController,
                 hintText: 'Tên đăng ký',
                 obscureText: false,
-                icon: Icon(Icons.email),
+                icon: Icon(Icons.person),
               ),
             ),
             SizedBox(
@@ -101,7 +125,7 @@ class _SigninPageState extends State<SigninPage> {
               child:
                   Stack(alignment: AlignmentDirectional.centerEnd, children: [
                 MyTextField(
-                  controller: passwordController,
+                  controller: password1Controller,
                   hintText: 'Nhập lại mật khẩu',
                   obscureText: _showPass,
                   icon: Icon(Icons.password),
@@ -123,30 +147,6 @@ class _SigninPageState extends State<SigninPage> {
             ),
             SizedBox(
               height: 15,
-            ),
-            Row(children: [
-              Expanded(
-                  child: Text(
-                'GHI NHỚ ĐĂNG NHẬP',
-                style: TextStyle(color: Colors.black),
-              )),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0),
-                child: Text(
-                  "Đăng nhập bằng phương thức khác",
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ),
-              Expanded(
-                  child: Divider(
-                thickness: 1,
-                color: Colors.grey,
-              )),
-            ]
-                // children: [Expanded(child: child)],
-                ),
-            SizedBox(
-              height: screenHeight * 0.03,
             ),
 
             Container(
@@ -202,7 +202,7 @@ class _SigninPageState extends State<SigninPage> {
               ],
             ),
             SizedBox(
-              height: 50,
+              height: 20,
             ),
 
             Row(
@@ -212,14 +212,19 @@ class _SigninPageState extends State<SigninPage> {
                   'ĐÃ CÓ TÀI KHOẢN? ',
                   style: TextStyle(color: Colors.grey),
                 ),
-                Text(
-                  'ĐĂNG NHẬP NGAY!',
-                  style: TextStyle(
-                      color: Colors.blue, fontWeight: FontWeight.bold),
-                )
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => LoginPage()));
+                  },
+                  child: Text(
+                    'ĐĂNG NHẬP NGAY!',
+                    style: TextStyle(
+                        color: Colors.blue, fontWeight: FontWeight.bold),
+                  ),
+                ),
               ],
-            )
-
+            ),
             //pass input
 
             //submit button

@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       ],
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Open Sans'),
-      home: SigninPage(),
+      home: LoginPage(),
     );
   }
 }

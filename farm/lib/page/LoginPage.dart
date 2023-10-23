@@ -1,4 +1,5 @@
 import 'package:farm/page/MainPage.dart';
+import 'package:farm/page/SigninPage.dart';
 import 'package:flutter/material.dart';
 import 'package:farm/components/My_button.dart';
 import 'package:farm/components/My_text_field.dart';
@@ -163,10 +164,16 @@ class _LoginPageState extends State<LoginPage> {
                   'Chưa có tài khoản? ',
                   style: TextStyle(color: Colors.grey),
                 ),
-                Text(
-                  'Tạo ngay!',
-                  style: TextStyle(
-                      color: Colors.blue, fontWeight: FontWeight.bold),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => SigninPage()));
+                  },
+                  child: Text(
+                    'Tạo ngay!',
+                    style: TextStyle(
+                        color: Colors.blue, fontWeight: FontWeight.bold),
+                  ),
                 )
               ],
             )
