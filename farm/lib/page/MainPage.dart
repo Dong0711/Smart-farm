@@ -31,8 +31,9 @@
 // import 'dart:html';
 
 import 'package:farm/components/BottomBar.dart';
+import 'package:farm/page/ListFarmPage.dart';
 import 'package:farm/page/HomePage.dart';
-import 'package:farm/page/VideoPage.dart';
+import 'package:farm/page/CameraPage.dart';
 import 'package:farm/page/LoginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:farm/page/UserPage.dart';
@@ -54,7 +55,7 @@ class _MainPageState extends State<MainPage> {
       body: SafeArea(
         child: PageView(
           controller: _pageController,
-          children: [UserPage()],
+          children: [ListFarmPage()],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
