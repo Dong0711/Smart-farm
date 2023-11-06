@@ -1,10 +1,16 @@
+<<<<<<< Updated upstream
 import 'package:farm/page/LoginPage.dart';
+=======
+import 'dart:html';
+
+>>>>>>> Stashed changes
 import 'package:farm/page/MainPage.dart';
 import 'package:flutter/material.dart';
 import 'package:farm/components/My_button.dart';
 import 'package:farm/components/My_text_field.dart';
 import 'package:farm/components/Square_title.dart';
 import 'package:farm/config/theme/AppColor.dart';
+<<<<<<< Updated upstream
 import 'package:farm/components/Mytext.dart';
 
 class SigninPage extends StatefulWidget {
@@ -26,6 +32,15 @@ class _SigninPageState extends State<SigninPage> {
 
   bool _showPass = true;
 
+=======
+
+class SigninPage extends StatelessWidget {
+  SigninPage({super.key});
+
+  // text editing controllers
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+>>>>>>> Stashed changes
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -38,6 +53,7 @@ class _SigninPageState extends State<SigninPage> {
           child: Column(children: [
             Container(
               width: screenWidth,
+<<<<<<< Updated upstream
               height: screenHeight * 0.15,
               decoration: BoxDecoration(
                   image: DecorationImage(
@@ -147,6 +163,54 @@ class _SigninPageState extends State<SigninPage> {
             ),
             SizedBox(
               height: 15,
+=======
+              height: screenHeight * 0.3,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('lib/images/backgroundhome.png'),
+                      fit: BoxFit.cover)),
+              // child: Text('this is container'),
+            ),
+            SizedBox(
+              height: screenHeight * 0.04,
+            ),
+            MyTextField(
+                controller: usernameController,
+                hintText: 'Tên đăng nhập',
+                obscureText: false),
+            SizedBox(
+              height: 15,
+            ),
+
+            MyTextField(
+                controller: passwordController,
+                hintText: 'Mật khẩu',
+                obscureText: true),
+            SizedBox(
+              height: 15,
+            ),
+            MyTextField(
+                controller: passwordController,
+                hintText: 'Nhập lại mật khẩu',
+                obscureText: false),
+            SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: const [
+                  Text(
+                    'Quên mật khẩu, tài khoản?',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: screenHeight * 0.03,
+>>>>>>> Stashed changes
             ),
 
             Container(
@@ -155,7 +219,11 @@ class _SigninPageState extends State<SigninPage> {
                 fontSize: 20,
                 onPressed: () {
                   Navigator.of(context).pushReplacement(
+<<<<<<< Updated upstream
                       MaterialPageRoute(builder: (context) => LoginPage()));
+=======
+                      MaterialPageRoute(builder: (context) => MainPage()));
+>>>>>>> Stashed changes
                 },
               ),
             ),
@@ -202,13 +270,18 @@ class _SigninPageState extends State<SigninPage> {
               ],
             ),
             SizedBox(
+<<<<<<< Updated upstream
               height: 20,
+=======
+              height: 50,
+>>>>>>> Stashed changes
             ),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
+<<<<<<< Updated upstream
                   'ĐÃ CÓ TÀI KHOẢN? ',
                   style: TextStyle(color: Colors.grey),
                 ),
@@ -225,6 +298,19 @@ class _SigninPageState extends State<SigninPage> {
                 ),
               ],
             ),
+=======
+                  'ĐÃ CÓ TÀI KHOẢN ?',
+                  style: TextStyle(color: Colors.grey),
+                ),
+                Text(
+                  'ĐĂNG NHẬP NGAY!',
+                  style: TextStyle(
+                      color: Colors.blue, fontWeight: FontWeight.bold),
+                )
+              ],
+            )
+
+>>>>>>> Stashed changes
             //pass input
 
             //submit button
