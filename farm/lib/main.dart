@@ -1,6 +1,8 @@
+import 'package:farm/page/ForgotnamePage.dart';
 import 'package:farm/page/ListFarmPage.dart';
 import 'package:farm/page/LoginPage.dart';
 import 'package:farm/page/MainPage.dart';
+import 'package:farm/page/SigninPage.dart';
 import 'package:flutter/material.dart';
 import 'package:farm/page/LoginPage.dart';
 // ignore: depend_on_referenced_packages
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
       ],
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Open Sans'),
-      home: MainPage(),
+      home: SigninPage(),
     );
   }
 }

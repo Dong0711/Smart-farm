@@ -32,14 +32,17 @@ class _CameraWidgetState extends State<CameraWidget> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: MyText(
-                text: "${widget.camera.cameraNanme??'Lỗi thông tin'}",
+                text: "${widget.camera.cameraNanme ?? 'Lỗi thông tin'}",
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
             Padding(
-                padding: const EdgeInsets.all(8.0), child: VideoPlayerWidget(cameraLink: widget.camera.cameraLink??'',)),
+                padding: const EdgeInsets.all(8.0),
+                child: VideoPlayerWidget(
+                  cameraLink: widget.camera.cameraLink ?? '',
+                )),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

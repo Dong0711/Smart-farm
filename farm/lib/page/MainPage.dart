@@ -1,34 +1,3 @@
-// import 'package:farm/components/BottomBar.dart';
-// import 'package:farm/page/HomePage.dart';
-// import 'package:farm/page/VideoPage.dart';
-// import 'package:farm/page/login_page.dart';
-// import 'package:flutter/material.dart';
-// import 'package:farm/page/HomePage.dart';
-
-// class MainPage extends StatelessWidget {
-//   final PageController _pageController = PageController();
-//   int _selectedPage = 0;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: PageView(
-//         controller: _pageController,
-//         children: [HomePage(), VideoPage()],
-//       ),
-//       bottomNavigationBar: BottomBar(
-//         onTap: (int index) {
-//           _pageController.animateToPage(index,
-//               duration: Duration(milliseconds: 300),
-//               curve: Curves.easeInOutCubic);
-//               StepState
-//         },
-
-//         index: _selectedPage,
-//       ),
-//     );
-//   }
-// }
-// import 'dart:html';
 
 import 'package:farm/components/BottomBar.dart';
 import 'package:farm/page/ListFarmPage.dart';
@@ -37,6 +6,8 @@ import 'package:farm/page/CameraPage.dart';
 import 'package:farm/page/LoginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:farm/page/UserPage.dart';
+
+import 'ForgotnamePage.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -55,7 +26,7 @@ class _MainPageState extends State<MainPage> {
       body: SafeArea(
         child: PageView(
           controller: _pageController,
-          children: [ListFarmPage()],
+          children: [ForgotnamePage()],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
