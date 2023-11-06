@@ -131,11 +131,12 @@ class _WebsitePageState extends State<WebsitePage> {
                                 padding: EdgeInsets.fromLTRB(screenWidth * 0.03,
                                     0, 0, screenWidth * 0.03),
                                 child: const Text(
-                                  'Thông tin cơ bản',
+                                  'TRANG CHỦ',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15),
                                 ),
+
                               ),
                             ],
                           ),
@@ -146,11 +147,16 @@ class _WebsitePageState extends State<WebsitePage> {
                                   color: Color.fromARGB(255, 255, 255, 255),
                                   borderRadius: BorderRadius.circular(20),
                                   boxShadow: kElevationToShadow[3]),
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    top: screenHeight * 0.02,
-                                    left: screenWidth * 0.04,
-                                    right: screenWidth * 0.04),
+                              child: Row(
+                                mainAxisAlignment mainAxisAlignment.end,
+                                children: const[
+                                  Text (
+                                    'TRANG TRAI 1',
+                                    style: TextStyle(color:  Colors.grey)
+                                    ),
+
+                                ],
+                                ),
                                 child: Column(
                                   children: [
                                     // TextField()

@@ -37,11 +37,8 @@ class MyApp extends StatelessWidget {
       ],
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Open Sans'),
-<<<<<<< Updated upstream
-      home: WebsitePage(),
-=======
-      home: SigninPage(),
->>>>>>> Stashed changes
+      home: LoginPage(),
+
     );
   }
 }
