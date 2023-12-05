@@ -1,13 +1,17 @@
+import 'package:farm/page/AnimalLodgingReportPage.dart';
 import 'package:farm/page/ForgotnamePage.dart';
 import 'package:farm/page/ListFarmPage.dart';
 import 'package:farm/page/LoginPage.dart';
 import 'package:farm/page/MainPage.dart';
+import 'package:farm/page/ReportPage.dart';
 import 'package:farm/page/SigninPage.dart';
 import 'package:flutter/material.dart';
 import 'package:farm/page/LoginPage.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
+
+import 'ex.dart';
 
 void main() async {
   runApp(const MyApp());
@@ -31,7 +35,7 @@ class MyApp extends StatelessWidget {
       ],
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Open Sans'),
-      home: SigninPage(),
+      home: LoginPage(),
     );
   }
 }

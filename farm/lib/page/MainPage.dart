@@ -1,13 +1,16 @@
-
 import 'package:farm/components/BottomBar.dart';
+import 'package:farm/page/FamrDetailsPage.dart';
 import 'package:farm/page/ListFarmPage.dart';
 import 'package:farm/page/HomePage.dart';
 import 'package:farm/page/CameraPage.dart';
 import 'package:farm/page/LoginPage.dart';
+import 'package:farm/page/ReportPage.dart';
 import 'package:flutter/material.dart';
 import 'package:farm/page/UserPage.dart';
 
+import '../config/theme/AppColor.dart';
 import 'ForgotnamePage.dart';
+import 'WebsitePage.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -26,7 +29,7 @@ class _MainPageState extends State<MainPage> {
       body: SafeArea(
         child: PageView(
           controller: _pageController,
-          children: [ForgotnamePage()],
+          children: [WebSidePage(), ListFarmPage(), ReportPage(), UserPage()],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(

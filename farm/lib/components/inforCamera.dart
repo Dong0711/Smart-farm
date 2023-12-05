@@ -21,16 +21,12 @@ class _CameraInfoContainerState extends State<CameraInfoContainer> {
       padding: const EdgeInsets.only(top: 8.0, bottom: 8),
       child: InkWell(
         onTap: () {
-          // print(' list camera${widget.animalLodging.listCameras[0]}');
-
-          // Navigator.push(context, MaterialPageRoute(builder: (context)=> ))
-
-          
           Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => CameraPage(
-                      listCamera: widget.animalLodging.listCameras ?? [])));
+                      listCamera: widget.animalLodging.listCameras ?? [],
+                      lodgingName: widget.animalLodging.lodgingName ?? '')));
         },
         child: Container(
           decoration: BoxDecoration(

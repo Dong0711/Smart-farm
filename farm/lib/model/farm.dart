@@ -1,6 +1,5 @@
 import 'package:farm/model/AnimalLodging.dart';
 
-
 class Farm {
   int? id;
   String? name;
@@ -9,6 +8,7 @@ class Farm {
   int? temperature;
   int? humidity;
   int? rainSalary;
+  String? image;
   List<AnimalLodging>? animalLodging;
 
   Farm(
@@ -19,6 +19,7 @@ class Farm {
       this.temperature,
       this.humidity,
       this.rainSalary,
+      this.image,
       this.animalLodging});
 
   Farm.fromJson(Map<String, dynamic> json) {
@@ -29,6 +30,7 @@ class Farm {
     temperature = json['temperature'];
     humidity = json['humidity'];
     rainSalary = json['rain_salary'];
+    image = json['image'];
     if (json['animal_lodging'] != null) {
       animalLodging = <AnimalLodging>[];
       json['animal_lodging'].forEach((v) {
@@ -46,6 +48,7 @@ class Farm {
     data['temperature'] = this.temperature;
     data['humidity'] = this.humidity;
     data['rain_salary'] = this.rainSalary;
+    data['image'] = this.image;
     if (this.animalLodging != null) {
       data['animal_lodging'] =
           this.animalLodging!.map((v) => v.toJson()).toList();

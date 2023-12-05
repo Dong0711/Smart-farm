@@ -7,7 +7,8 @@ import 'package:farm/model/farm.dart';
 import 'package:flutter/material.dart';
 
 class FarmInfoContainer extends StatefulWidget {
-  const FarmInfoContainer({super.key, this.farm});
+  const FarmInfoContainer({super.key, this.farm, });
+  // final bool? loadListCamera=true;
   final Farm? farm;
   @override
   State<FarmInfoContainer> createState() => _FarmInfoContainerState();
@@ -18,6 +19,7 @@ class _FarmInfoContainerState extends State<FarmInfoContainer> {
   void LoadCamera() {
     // if(widget.farm!.animalLodging!)
     // {}
+    // isenable = true;
     if (widget.farm!.animalLodging != null) {
       for (var item in widget.farm!.animalLodging!) {
         final CameraInfoContainer container =
@@ -31,6 +33,7 @@ class _FarmInfoContainerState extends State<FarmInfoContainer> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    
     LoadCamera();
   }
 

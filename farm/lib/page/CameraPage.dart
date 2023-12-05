@@ -10,7 +10,8 @@ import '../model/AnimalLodging.dart';
 import '../model/camera.dart';
 
 class CameraPage extends StatefulWidget {
-  const CameraPage({super.key, required this.listCamera});
+  const CameraPage({super.key, required this.listCamera, required this.lodgingName});
+  final String lodgingName;
   final List<Camera> listCamera;
   @override
   State<CameraPage> createState() => _CameraPageState();
@@ -43,7 +44,7 @@ class _CameraPageState extends State<CameraPage> {
         appBar: AppBar(
           backgroundColor: AppColor.primary[50],
           title: MyText(
-            text: 'CHUỒNG 1',
+            text: '${widget.lodgingName}',
             fontWeight: FontWeight.bold,
             color: Colors.white,
             fontSize: 25,
