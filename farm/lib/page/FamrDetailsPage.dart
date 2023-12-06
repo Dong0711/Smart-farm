@@ -7,6 +7,7 @@ import 'package:farm/model/AnimalLodging.dart';
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/retry.dart';
 import '../components/AnimalLodgingDetail.dart';
 
 class FarmDetails extends StatefulWidget {
@@ -119,14 +120,19 @@ class _FarmDetailsState extends State<FarmDetails> {
           ],
         ),
       ),
-      Column(
-        children: [...listAnimalLodging],
+      FutureBuilder(
+        future: LoadAnimalLodginDetail(),
+        builder: ((context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done)
+            return Column(
+              children: [...listAnimalLodging],
+            );
+          else
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+        }),
       ),
-      TextButton(
-          onPressed: () {
-            setState(() {});
-          },
-          child: Text("data"))
     ]));
   }
 

@@ -127,8 +127,8 @@ class _FarmInfoState extends State<FarmInfo> {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                          builder: (context) =>
-                              const AnimalLodgingReportPage()),
+                          builder: (context) => AnimalLodgingReportPage(
+                              title: '${widget.info.name}')),
                     );
                   },
                   child: Container(
