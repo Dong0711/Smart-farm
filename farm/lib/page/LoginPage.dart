@@ -1,12 +1,13 @@
+// ignore_for_file: file_names
+
 import 'package:farm/page/MainPage.dart';
 import 'package:flutter/material.dart';
 import 'package:farm/components/My_button.dart';
 import 'package:farm/components/My_text_field.dart';
 import 'package:farm/components/Square_title.dart';
-import 'package:farm/config/theme/AppColor.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -33,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
             Container(
               width: screenWidth,
               height: screenHeight * 0.3,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage('lib/images/backgroundhome.png'),
                       fit: BoxFit.cover)),
@@ -43,31 +44,30 @@ class _LoginPageState extends State<LoginPage> {
               height: screenHeight * 0.04,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 30),
               child: MyTextField(
                 controller: usernameController,
                 hintText: 'Tên đăng nhập',
                 obscureText: false,
-                icon: Icon(Icons.email),
+                icon: const Icon(Icons.email),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
 
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 30),
               child:
                   Stack(alignment: AlignmentDirectional.centerEnd, children: [
                 MyTextField(
                   controller: passwordController,
                   hintText: 'Mật khẩu',
                   obscureText: _showPass,
-                  icon: Icon(Icons.password),
+                  icon: const Icon(Icons.password),
                 ),
                 TextButton(
                     style: TextButton.styleFrom(
-                      onSurface: Colors.transparent,
                     ),
                     onPressed: () {
                       setState(() {
@@ -81,14 +81,14 @@ class _LoginPageState extends State<LoginPage> {
               ]),
             ),
 
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: const [
+                children: [
                   Text(
                     'Quên mật khẩu, tài khoản?',
                     style: TextStyle(color: Colors.grey),
@@ -100,15 +100,14 @@ class _LoginPageState extends State<LoginPage> {
               height: screenHeight * 0.03,
             ),
 
-            Container(
-              child: Mybutton(
-                text: 'ĐĂNG NHẬP',
-                fontSize: 20,
-                onPressed: () {
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => MainPage()));
-                },
-              ),
+            Mybutton(
+              text: 'ĐĂNG NHẬP',
+              
+              fontSize: 20,
+              onPressed: () {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => const MainPage()));
+              },
             ),
 
             // padding: EdgeInsets.symmetric(horizontal: ),
@@ -118,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             //user input
 
-            Row(children: [
+            const Row(children: [
               Expanded(
                   child: Divider(
                 thickness: 1,
@@ -142,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               height: screenHeight * 0.04,
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SquareTile(imagePath: 'lib/images/google.png'),
@@ -152,11 +151,11 @@ class _LoginPageState extends State<LoginPage> {
                 SquareTile(imagePath: 'lib/images/facebook.png'),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
 
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
@@ -170,14 +169,6 @@ class _LoginPageState extends State<LoginPage> {
                 )
               ],
             )
-
-            //pass input
-
-            //submit button
-
-            // text
-
-            //another
           ]),
         ),
       ),

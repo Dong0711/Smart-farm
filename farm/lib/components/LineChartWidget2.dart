@@ -7,6 +7,7 @@ class LineChartWidget2 {
   Color? rightBarColor = AppColor.sub[50];
   double width = 7;
 
+  // ignore: non_constant_identifier_names
   BarChart LineChart(List value) {
     List<BarChartGroupData> rawBarGroups = RawBarGroups(value);
     List<BarChartGroupData> showingBarGroups = rawBarGroups;
@@ -28,7 +29,7 @@ class LineChartWidget2 {
               reservedSize: 42,
             ),
           ),
-          leftTitles: AxisTitles(
+          leftTitles: const AxisTitles(
             sideTitles: SideTitles(showTitles: false),
           ),
         ),
@@ -40,6 +41,7 @@ class LineChartWidget2 {
     );
   }
 
+  // ignore: non_constant_identifier_names
   List<BarChartGroupData> RawBarGroups(List value) {
     List<BarChartGroupData> items = [];
     for (var i = 0; i < value.length; i++) {

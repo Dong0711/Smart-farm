@@ -16,20 +16,20 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
     return TextFormField(
       enabled: widget.isEnabled,
       initialValue: widget.text,
-      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+      style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
       decoration: InputDecoration(
-        border: widget.isEnabled ? OutlineInputBorder() : InputBorder.none,
+        border: widget.isEnabled ? const OutlineInputBorder() : InputBorder.none,
         focusedBorder: widget.isEnabled
             ? OutlineInputBorder(
                 borderSide: BorderSide(
-                color: AppColor.primary[50] ?? Color.fromRGBO(44, 82, 39, 1),
+                color: AppColor.primary[50] ?? const Color.fromRGBO(44, 82, 39, 1),
                 width: 2,
               ))
             : InputBorder.none,
         enabledBorder: widget.isEnabled
             ? OutlineInputBorder(
                 borderSide: BorderSide(
-                color: AppColor.primary[10] ?? Color.fromRGBO(87, 164, 77, 1),
+                color: AppColor.primary[10] ?? const Color.fromRGBO(87, 164, 77, 1),
                 width: 2,
               ))
             : InputBorder.none, // border: InputBorder.none,

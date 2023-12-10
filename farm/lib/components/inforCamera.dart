@@ -1,8 +1,6 @@
 import 'package:farm/components/Mytext.dart';
 import 'package:farm/model/AnimalLodging.dart';
-import 'package:farm/model/camera.dart';
 import 'package:farm/page/CameraPage.dart';
-import 'package:farm/page/ListFarmPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vlc_player/flutter_vlc_player.dart';
 
@@ -37,7 +35,7 @@ class _CameraInfoContainerState extends State<CameraInfoContainer> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Container(
+                SizedBox(
                   height: 90,
                   width: 160,
                   child: VlcPlayer(

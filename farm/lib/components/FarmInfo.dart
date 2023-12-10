@@ -1,10 +1,11 @@
+// ignore: file_names
+// ignore_for_file: file_names, duplicate_ignore
+
 import 'package:farm/components/Mytext.dart';
 import 'package:farm/config/theme/AppColor.dart';
 import 'package:farm/page/AnimalLodgingPage.dart';
 import 'package:farm/page/AnimalLodgingReportPage.dart';
-import 'package:farm/page/CameraPage.dart';
 import 'package:farm/page/FamrDetailsPage.dart';
-import 'package:farm/page/ListFarmPage.dart';
 import 'package:flutter/material.dart';
 
 import '../model/farm.dart';
@@ -57,7 +58,7 @@ class _FarmInfoState extends State<FarmInfo> {
                 )
               ],
             ),
-            Container(
+            SizedBox(
                 // color: Colors.black,
                 height: 200,
                 width: 500,
@@ -65,7 +66,7 @@ class _FarmInfoState extends State<FarmInfo> {
                   '${widget.info.image}',
                   fit: BoxFit.fill,
                 )),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
@@ -97,7 +98,7 @@ class _FarmInfoState extends State<FarmInfo> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
@@ -107,7 +108,11 @@ class _FarmInfoState extends State<FarmInfo> {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                          builder: (context) => const FarmDetails()),
+                          builder: (context) => FarmDetails(
+                                farmName: '${widget.info.name}',
+                                farmAcreage: '${widget.info.acreage}',
+                                farmLocal: '${widget.info.local}',
+                              )),
                     );
                   },
                   child: Container(
@@ -117,7 +122,7 @@ class _FarmInfoState extends State<FarmInfo> {
                         borderRadius: BorderRadius.circular(20)),
                     width: 100,
                     height: 30,
-                    child: MyText(
+                    child: const MyText(
                       text: 'Quản Lý',
                       fontWeight: FontWeight.bold,
                     ),
@@ -138,7 +143,7 @@ class _FarmInfoState extends State<FarmInfo> {
                         borderRadius: BorderRadius.circular(20)),
                     width: 100,
                     height: 30,
-                    child: MyText(
+                    child: const MyText(
                       text: 'Thống kê',
                       fontWeight: FontWeight.bold,
                     ),
@@ -160,7 +165,7 @@ class _FarmInfoState extends State<FarmInfo> {
                         borderRadius: BorderRadius.circular(20)),
                     width: 100,
                     height: 30,
-                    child: MyText(
+                    child: const MyText(
                       text: 'Giám sát',
                       fontWeight: FontWeight.bold,
                     ),

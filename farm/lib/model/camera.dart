@@ -12,10 +12,10 @@ class Camera {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Camera_ID'] = this.cameraID;
-    data['camera_nanme'] = this.cameraNanme;
-    data['camera_link'] = this.cameraLink;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['Camera_ID'] = cameraID;
+    data['camera_nanme'] = cameraNanme;
+    data['camera_link'] = cameraLink;
     return data;
   }
 }

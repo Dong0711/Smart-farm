@@ -1,16 +1,17 @@
+// ignore: file_names
 import 'package:farm/config/theme/AppColor.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class LineChartWidgets {
-  List<Color> blueGradientColors = [Color(0xFF50E4FF), Color(0xFF2196F3)];
+  List<Color> blueGradientColors = [const Color(0xFF50E4FF), const Color(0xFF2196F3)];
   List<Color> redGradientColors = [
-    Color.fromARGB(213, 255, 151, 151),
-    Color.fromARGB(124, 243, 33, 33)
+    const Color.fromARGB(213, 255, 151, 151),
+    const Color.fromARGB(124, 243, 33, 33)
   ];
   List<Color> greenGradientColors = [
-    Color.fromARGB(210, 75, 119, 73),
-    Color.fromARGB(219, 26, 131, 2)
+    const Color.fromARGB(210, 75, 119, 73),
+    const Color.fromARGB(219, 26, 131, 2)
   ];
   Color? leftColor = AppColor.primary[90];
   Color? rightColor = AppColor.sub[50];

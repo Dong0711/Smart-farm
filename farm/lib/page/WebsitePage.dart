@@ -1,9 +1,9 @@
+// ignore_for_file: file_names
+
 import 'dart:convert';
 // import 'dart:js_interop';
 
 import 'package:farm/components/FarmInfo.dart';
-import 'package:farm/components/Mytext.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../config/theme/AppColor.dart';
@@ -18,10 +18,10 @@ class WebSidePage extends StatefulWidget {
 
 class _WebSidePageState extends State<WebSidePage> {
   List<FarmInfo> listFarm = [];
+  // ignore: non_constant_identifier_names
   Future GetFarms() async {
     var response = await http
         .get(Uri.parse('https://fake-api-smart-farm-zwq6.vercel.app/farm'));
-    print(response);
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
       // print('${response}');
@@ -40,7 +40,6 @@ class _WebSidePageState extends State<WebSidePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     GetFarms();
   }
@@ -50,7 +49,7 @@ class _WebSidePageState extends State<WebSidePage> {
     return SingleChildScrollView(
         child: Column(
       children: [
-        Container(
+        SizedBox(
           height: 300,
           child: Stack(
             alignment: Alignment.center,
@@ -66,7 +65,7 @@ class _WebSidePageState extends State<WebSidePage> {
                         AppBar(backgroundColor: Colors.transparent, actions: [
                       IconButton(
                         onPressed: () {},
-                        icon: Icon((Icons.notifications_active)),
+                        icon: const Icon((Icons.notifications_active)),
                       ),
                     ]),
                   )),
@@ -89,14 +88,15 @@ class _WebSidePageState extends State<WebSidePage> {
               FutureBuilder(
                   future: GetFarms(),
                   builder: (context, snapsort) {
-                    if (snapsort.connectionState == ConnectionState.done)
+                    if (snapsort.connectionState == ConnectionState.done) {
                       return Column(
                         children: [...listFarm],
                       );
-                    else
-                      return (Center(
+                    } else {
+                      return (const Center(
                         child: CircularProgressIndicator(),
                       ));
+                    }
                   })
             ],
           ),

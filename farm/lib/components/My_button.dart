@@ -22,11 +22,14 @@ class Mybutton extends StatelessWidget {
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
       child: ElevatedButton(
         onPressed: onPressed,
-        style:
-            ElevatedButton.styleFrom(primary: Color.fromRGBO(0, 115, 12, 1)),
+        style: ElevatedButton.styleFrom(
+            backgroundColor: Color.fromRGBO(0, 115, 12, 1)),
         child: Text(
           text,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: fontSize),
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: fontSize,
+              color: Colors.white),
         ),
       ),
     );

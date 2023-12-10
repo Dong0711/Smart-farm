@@ -1,4 +1,4 @@
-import 'dart:convert';
+// ignore_for_file: file_names
 
 import 'package:farm/components/Mytext.dart';
 import 'package:farm/components/inforCamera.dart';
@@ -21,6 +21,7 @@ class AnimalLodgingPage extends StatefulWidget {
 
 class _AnimalLodgingPageState extends State<AnimalLodgingPage> {
   List<CameraInfoContainer> listCam = [];
+  // ignore: non_constant_identifier_names
   void LoadCamera() {
     // if(widget.farm!.animalLodging!)
     // {}
@@ -43,6 +44,7 @@ class _AnimalLodgingPageState extends State<AnimalLodgingPage> {
     LoadCamera();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
       return Scaffold(
@@ -56,7 +58,6 @@ class _AnimalLodgingPageState extends State<AnimalLodgingPage> {
           centerTitle: true,
           leading: IconButton(
               onPressed: () {
-                print('click');
                 Navigator.pop(context);
               },
               icon: Container(
@@ -71,7 +72,7 @@ class _AnimalLodgingPageState extends State<AnimalLodgingPage> {
               )),
         ),
         body: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
               Container(
@@ -90,7 +91,7 @@ class _AnimalLodgingPageState extends State<AnimalLodgingPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           MyText(
-                            text: widget.farm!.name ?? 'lỗi trang trại',
+                            text: widget.farm.name ?? 'lỗi trang trại',
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -102,21 +103,21 @@ class _AnimalLodgingPageState extends State<AnimalLodgingPage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         MyText(
-                          text: widget.farm!.local ?? 'Lỗi địa chỉ',
+                          text: widget.farm.local ?? 'Lỗi địa chỉ',
                           color: Colors.white,
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                         )
                       ],
                     ),
-                    Container(
+                    SizedBox(
                       // color: Colors.black,
                       height: 400,
                       child: ListView(
                         children: [...listCam],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(
@@ -124,26 +125,26 @@ class _AnimalLodgingPageState extends State<AnimalLodgingPage> {
                       children: [
                         MyText(
                           text:
-                              "Nhiệt độ: ${widget.farm!.temperature ?? 'lỗi'}",
+                              "Nhiệt độ: ${widget.farm.temperature ?? 'lỗi'}",
                           fontSize: 10,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                         MyText(
-                          text: 'Độ ẩm: ${widget.farm!.temperature ?? "lỗi"}',
+                          text: 'Độ ẩm: ${widget.farm.temperature ?? "lỗi"}',
                           fontSize: 10,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                         MyText(
                           text:
-                              'Lương mưa: ${widget.farm!.rainSalary ?? "lỗi"}',
+                              'Lương mưa: ${widget.farm.rainSalary ?? "lỗi"}',
                           fontSize: 10,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                         MyText(
-                          text: 'Diện tích ${widget.farm!.acreage ?? "lỗi"}',
+                          text: 'Diện tích ${widget.farm.acreage ?? "lỗi"}',
                           fontSize: 10,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,

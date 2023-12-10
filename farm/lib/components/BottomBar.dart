@@ -10,8 +10,8 @@ class BottomBar extends StatelessWidget {
 
     return BottomNavigationBar(
       backgroundColor: Colors.red,
-      selectedItemColor: Color.fromRGBO(111, 156, 103, 1),
-      unselectedItemColor: Color.fromRGBO(127, 131, 135, 1),
+      selectedItemColor: const Color.fromRGBO(111, 156, 103, 1),
+      unselectedItemColor: const Color.fromRGBO(127, 131, 135, 1),
       currentIndex: index,
       
       onTap: onTap,
@@ -24,7 +24,7 @@ class BottomBar extends StatelessWidget {
           ),
           activeIcon: Transform.scale(
             scale: 1.2,
-            child: Icon(Icons.home_filled),
+            child: const Icon(Icons.home_filled),
           ),
           label: 'home',
         ),
@@ -35,7 +35,7 @@ class BottomBar extends StatelessWidget {
             ),
             activeIcon: Transform.scale(
               scale: 1.2,
-              child: Icon(Icons.videocam_rounded),
+              child: const Icon(Icons.videocam_rounded),
             ),
             label: 'text'),
         BottomNavigationBarItem(
@@ -45,7 +45,7 @@ class BottomBar extends StatelessWidget {
             ),
             activeIcon: Transform.scale(
               scale: 1.2,
-              child: Icon(Icons.bar_chart_sharp),
+              child: const Icon(Icons.bar_chart_sharp),
             ),
             label: 'text'),
         BottomNavigationBarItem(
@@ -55,7 +55,7 @@ class BottomBar extends StatelessWidget {
             ),
             activeIcon: Transform.scale(
               scale: 1.2,
-              child: Icon(Icons.person_2_rounded),
+              child: const Icon(Icons.person_2_rounded),
             ),
             label: 'text'),
       ],

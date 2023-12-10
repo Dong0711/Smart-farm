@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:convert';
 
 import 'package:farm/components/AvgAnimalChartWidget.dart';
@@ -5,7 +7,6 @@ import 'package:farm/components/Mytext.dart';
 import 'package:farm/config/theme/AppColor.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter/services.dart';
 
 class AnimalLodgingReportPage extends StatefulWidget {
   const AnimalLodgingReportPage({
@@ -30,9 +31,7 @@ class _AnimalLodgingReportPageState extends State<AnimalLodgingReportPage> {
     // print(response);
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
-      // title = jsonData['farm_name'];
       animals_disease_data = jsonData['animals_disease_data'];
-      // print(animals_disease_data);
       rain_salary_data = jsonData['rain_salary_data'];
       temp_data = jsonData['temp_data'];
       humidity_data = jsonData['humidity_data'];
@@ -46,7 +45,7 @@ class _AnimalLodgingReportPageState extends State<AnimalLodgingReportPage> {
             backgroundColor: AppColor.primary[50],
             centerTitle: true,
             title: MyText(
-              text: "${widget.title}",
+              text: widget.title,
               color: Colors.white,
               fontSize: 25,
               fontWeight: FontWeight.bold,
@@ -67,31 +66,34 @@ class _AnimalLodgingReportPageState extends State<AnimalLodgingReportPage> {
                 ),
               ),
             )),
-        body: Padding(
-            padding: EdgeInsets.all(20),
-            child: FutureBuilder(
-                future: loadData(),
-                builder: (context, snapsort) {
-                  if (snapsort.connectionState == ConnectionState.done)
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AvgAnimalChartWdiget(
-                            title: 'Số LƯỢNG CON BỆN',
-                            value: animals_disease_data,
-                            type: 3),
-                        AvgAnimalChartWdiget(
-                            title: 'Lượng Mưa',
-                            value: rain_salary_data,
-                            type: 0),
-                        AvgAnimalChartWdiget(
-                            title: 'Độ ẨM', value: humidity_data, type: 2),
-                        AvgAnimalChartWdiget(
-                            title: 'NHIỆT ĐỘ', value: temp_data, type: 1),
-                      ],
-                    );
-                  else
-                    return (Center(child: CircularProgressIndicator()));
-                })));
+        body: SingleChildScrollView(
+          child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: FutureBuilder(
+                  future: loadData(),
+                  builder: (context, snapsort) {
+                    if (snapsort.connectionState == ConnectionState.done) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AvgAnimalChartWdiget(
+                              title: 'Số LƯỢNG CON BỆN',
+                              value: animals_disease_data,
+                              type: 3),
+                          AvgAnimalChartWdiget(
+                              title: 'Lượng Mưa',
+                              value: rain_salary_data,
+                              type: 0),
+                          AvgAnimalChartWdiget(
+                              title: 'Độ ẨM', value: humidity_data, type: 2),
+                          AvgAnimalChartWdiget(
+                              title: 'NHIỆT ĐỘ', value: temp_data, type: 1),
+                        ],
+                      );
+                    } else {
+                      return (const Center(child: CircularProgressIndicator()));
+                    }
+                  })),
+        ));
   }
 }

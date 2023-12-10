@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 // import 'package:farm/components/My_text_field.dart';
@@ -7,18 +9,25 @@ import 'package:farm/model/AnimalLodging.dart';
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/retry.dart';
 import '../components/AnimalLodgingDetail.dart';
 
 class FarmDetails extends StatefulWidget {
-  const FarmDetails({super.key});
-
+  const FarmDetails(
+      {super.key,
+      required this.farmName,
+      required this.farmAcreage,
+      required this.farmLocal});
+  // ignore: non_constant_identifier_names
+  final String farmName;
+  final String farmAcreage;
+  final String farmLocal;
   @override
   State<FarmDetails> createState() => _FarmDetailsState();
 }
 
 class _FarmDetailsState extends State<FarmDetails> {
   List<AnimalLodingDetail> listAnimalLodging = [];
+  // ignore: non_constant_identifier_names
   Future LoadAnimalLodginDetail() async {
     var response = await http.get(Uri.parse(
         'https://fake-api-smart-farm-zwq6.vercel.app/farm_1_animal_lodging'));
@@ -54,7 +63,6 @@ class _FarmDetailsState extends State<FarmDetails> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
         child: Column(children: [
@@ -62,7 +70,7 @@ class _FarmDetailsState extends State<FarmDetails> {
           backgroundColor: AppColor.primary[50],
           centerTitle: true,
           title: MyText(
-            text: "TRANG TRẠI 1",
+            text: widget.farmName,
             color: Colors.white,
             fontSize: 25,
             fontWeight: FontWeight.bold,
@@ -84,9 +92,9 @@ class _FarmDetailsState extends State<FarmDetails> {
             ),
           )),
       Container(
-        margin: EdgeInsets.only(left: 20, right: 20, top: 50),
+        margin: const EdgeInsets.only(left: 20, right: 20, top: 50),
         child: ClipRRect(
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(30), topRight: Radius.circular(30)),
           child: Image.network(
             height: screenWidth * 9 / 16,
@@ -97,24 +105,24 @@ class _FarmDetailsState extends State<FarmDetails> {
         ),
       ),
       Container(
-        margin: EdgeInsets.only(left: 20, right: 20),
+        margin: const EdgeInsets.only(left: 20, right: 20),
         alignment: Alignment.center,
         decoration: BoxDecoration(
             color: AppColor.primary[10],
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(30),
                 bottomRight: Radius.circular(30))),
         height: 70,
         child: Column(
           children: [
             MyText(
-              text: "DIỆM TÍCH: 100m2",
+              text: "DIỆM TÍCH: ${widget.farmAcreage}m2",
               fontWeight: FontWeight.bold,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                MyText(text: "Địa chỉ: số 128 Chương Dương, Lạc Dương")
+                MyText(text: "Địa chỉ: ${widget.farmLocal}")
               ],
             )
           ],
@@ -123,14 +131,15 @@ class _FarmDetailsState extends State<FarmDetails> {
       FutureBuilder(
         future: LoadAnimalLodginDetail(),
         builder: ((context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done)
+          if (snapshot.connectionState == ConnectionState.done) {
             return Column(
               children: [...listAnimalLodging],
             );
-          else
-            return Center(
+          } else {
+            return const Center(
               child: CircularProgressIndicator(),
             );
+          }
         }),
       ),
     ]));

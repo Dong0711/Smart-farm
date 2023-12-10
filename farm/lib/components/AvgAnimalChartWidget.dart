@@ -36,13 +36,13 @@ class AvgAnimalChartWdiget extends StatelessWidget {
     }
 
     return Container(
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       alignment: Alignment.center,
-      padding: EdgeInsets.only(top: 20, bottom: 20),
+      padding: const EdgeInsets.only(top: 20, bottom: 20),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(30),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
               color: Color.fromARGB(80, 0, 0, 0),
               blurRadius: 15.0,
@@ -53,7 +53,7 @@ class AvgAnimalChartWdiget extends StatelessWidget {
       height: 190,
       child: Column(children: [
         MyText(
-          text: '${title.toUpperCase()}',
+          text: title.toUpperCase(),
           fontSize: 20,
           fontWeight: FontWeight.bold,
         ),
@@ -66,14 +66,14 @@ class AvgAnimalChartWdiget extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: lowColor,
                     borderRadius:
-                        BorderRadius.horizontal(left: Radius.circular(20))),
+                        const BorderRadius.horizontal(left: Radius.circular(20))),
                 width: MediaQuery.of(context).size.width / 4,
                 height: MediaQuery.of(context).size.width / 5,
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       MyText(
-                        text: '${type == 3 ? "Bình thường" : "Thấp nhất"}',
+                        text: type == 3 ? "Bình thường" : "Thấp nhất",
                         fontWeight: FontWeight.bold,
                         color: textColor,
                       ),
@@ -92,7 +92,7 @@ class AvgAnimalChartWdiget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       MyText(
-                        text: '${type == 3 ? "Bệnh" : "Trung bình"}',
+                        text: type == 3 ? "Bệnh" : "Trung bình",
                         fontWeight: FontWeight.bold,
                         color: textColor,
                       ),
@@ -107,14 +107,14 @@ class AvgAnimalChartWdiget extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: heightColor,
                     borderRadius:
-                        BorderRadius.horizontal(right: Radius.circular(20))),
+                        const BorderRadius.horizontal(right: Radius.circular(20))),
                 width: MediaQuery.of(context).size.width / 4,
                 height: MediaQuery.of(context).size.width / 5,
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       MyText(
-                        text: '${type == 3 ? "Chết" : "Cao nhất"}',
+                        text: type == 3 ? "Chết" : "Cao nhất",
                         fontWeight: FontWeight.bold,
                         color: textColor,
                       ),

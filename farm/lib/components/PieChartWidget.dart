@@ -1,7 +1,8 @@
+// ignore_for_file: file_names
+
 import 'package:farm/config/theme/AppColor.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 class PieChartWidget {
   List<PieChartSectionData> showingSections(List value) {
@@ -15,7 +16,7 @@ class PieChartWidget {
             value: value[i],
             title: '${((value[i] / count * 100) * 100).round() / 100}%',
             radius: 80,
-            titleStyle: TextStyle(
+            titleStyle: const TextStyle(
               fontSize: 16.0,
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -24,11 +25,11 @@ class PieChartWidget {
           );
         case 1:
           return PieChartSectionData(
-            color: Color(0xFFFFC300),
+            color: const Color(0xFFFFC300),
             value: value[i],
             title: '${((value[i] / count * 100) * 100).round() / 100}%',
             radius: 85,
-            titleStyle: TextStyle(
+            titleStyle: const TextStyle(
               fontSize: 16.0,
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -41,7 +42,7 @@ class PieChartWidget {
             value: value[i],
             title: '${((value[i] / count * 100) * 100).round() / 100}%',
             radius: 90,
-            titleStyle: TextStyle(
+            titleStyle: const TextStyle(
               fontSize: 16.0,
               fontWeight: FontWeight.bold,
               color: Colors.white,

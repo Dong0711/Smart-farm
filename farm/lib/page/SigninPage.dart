@@ -1,5 +1,6 @@
+// ignore_for_file: file_names
+
 import 'package:farm/page/LoginPage.dart';
-import 'package:farm/page/MainPage.dart';
 import 'package:flutter/material.dart';
 import 'package:farm/components/My_button.dart';
 import 'package:farm/components/My_text_field.dart';
@@ -8,7 +9,7 @@ import 'package:farm/config/theme/AppColor.dart';
 import 'package:farm/components/Mytext.dart';
 
 class SigninPage extends StatefulWidget {
-  SigninPage({super.key});
+  const SigninPage({super.key});
 
   @override
   State<SigninPage> createState() => _SigninPageState();
@@ -29,22 +30,13 @@ class _SigninPageState extends State<SigninPage> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       //logo
       body: SafeArea(
         child: Column(children: [
-          // Container(
-          //   width: screenWidth,
-          //   height: screenHeight * 0.15,
-          //   decoration: BoxDecoration(
-          //       image:
-          //           DecorationImage(image: AssetImage('lib/images/Farm.png'))),
-          //   // child: Text('this is container'),
-          // ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: MyText(
               text: 'ĐĂNG KÝ',
               color: AppColor.primary[90],
@@ -52,11 +44,9 @@ class _SigninPageState extends State<SigninPage> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(
-            height: 0,
-          ),
+
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: MyText(
               text: 'TRỞ THÀNH THÀNH VIÊN BẰNG CÁCH TẠO TÀI KHOẢN',
               color: AppColor.primary[90],
@@ -64,46 +54,44 @@ class _SigninPageState extends State<SigninPage> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 30),
             child: MyTextField(
               controller: usernameController,
               hintText: 'Tên đăng ký',
               obscureText: false,
-              icon: Icon(Icons.person),
+              icon: const Icon(Icons.person),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 30),
             child: MyTextField(
               controller: emailController,
               hintText: 'Email',
               obscureText: false,
-              icon: Icon(Icons.email),
+              icon: const Icon(Icons.email),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Stack(alignment: AlignmentDirectional.centerEnd, children: [
               MyTextField(
                 controller: passwordController,
                 hintText: 'Mật khẩu',
                 obscureText: _showPass,
-                icon: Icon(Icons.password),
+                icon: const Icon(Icons.password),
               ),
               TextButton(
-                  style: TextButton.styleFrom(
-                    onSurface: Colors.transparent,
-                  ),
+                  style: TextButton.styleFrom(),
                   onPressed: () {
                     setState(() {
                       _showPass = !_showPass;
@@ -115,22 +103,20 @@ class _SigninPageState extends State<SigninPage> {
                   ))
             ]),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Stack(alignment: AlignmentDirectional.centerEnd, children: [
               MyTextField(
                 controller: password1Controller,
                 hintText: 'Nhập lại mật khẩu',
                 obscureText: _showPass,
-                icon: Icon(Icons.password),
+                icon: const Icon(Icons.password),
               ),
               TextButton(
-                  style: TextButton.styleFrom(
-                    onSurface: Colors.transparent,
-                  ),
+                  style: TextButton.styleFrom(),
                   onPressed: () {
                     setState(() {
                       _showPass = !_showPass;
@@ -142,24 +128,15 @@ class _SigninPageState extends State<SigninPage> {
                   ))
             ]),
           ),
-          // SizedBox(
-          //   // height: 15,
-          //   height: screenHeight * 0.3,
-          //   // de: BoxDecoration(
-          //   //     image: DecorationImage(
-          //   //         image: AssetImage('lib/images/backgroundhome.png'),
-          //   //         fit: BoxFit.cover)),
-          //   // child: Text('this is container'),
-          // ),
 
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: const [
+              children: [
                 Text(
                   'Quên mật khẩu, tài khoản?',
                   style: TextStyle(color: Colors.grey),
@@ -171,16 +148,14 @@ class _SigninPageState extends State<SigninPage> {
             height: screenHeight * 0.03,
           ),
 
-          Container(
-            child: Mybutton(
-              text: 'ĐĂNG KÝ',
-              fontSize: 20,
-              onPressed: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => LoginPage()));
-                // MaterialPageRoute(builder: (context) => MainPage()));
-              },
-            ),
+          Mybutton(
+            text: 'ĐĂNG KÝ',
+            fontSize: 20,
+            onPressed: () {
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => const LoginPage()));
+              // MaterialPageRoute(builder: (context) => MainPage()));
+            },
           ),
 
           // padding: EdgeInsets.symmetric(horizontal: ),
@@ -190,7 +165,7 @@ class _SigninPageState extends State<SigninPage> {
           ),
           //user input
 
-          Row(children: [
+          const Row(children: [
             Expanded(
                 child: Divider(
               thickness: 1,
@@ -214,7 +189,7 @@ class _SigninPageState extends State<SigninPage> {
           SizedBox(
             height: screenHeight * 0.04,
           ),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SquareTile(imagePath: 'lib/images/google.png'),
@@ -224,23 +199,23 @@ class _SigninPageState extends State<SigninPage> {
               SquareTile(imagePath: 'lib/images/facebook.png'),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'ĐÃ CÓ TÀI KHOẢN? ',
                 style: TextStyle(color: Colors.grey),
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => LoginPage()));
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const LoginPage()));
                 },
-                child: Text(
+                child: const Text(
                   'ĐĂNG NHẬP NGAY!',
                   style: TextStyle(
                       color: Colors.blue, fontWeight: FontWeight.bold),

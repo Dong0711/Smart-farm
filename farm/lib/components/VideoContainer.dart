@@ -28,14 +28,15 @@ class _VideoContainerState extends State<VideoContainer> {
         options: VlcPlayerOptions());
   }
 
+  @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 90,
       width: 160,
       child: VlcPlayer(
         controller: _vlcPlayerController,
         aspectRatio: 16 / 9,
-        placeholder: CircularProgressIndicator(),
+        placeholder: const CircularProgressIndicator(),
       ),
     );
   }

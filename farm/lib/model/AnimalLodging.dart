@@ -42,25 +42,25 @@ class AnimalLodging {
     if (json['list_cameras'] != null) {
       listCameras = <Camera>[];
       json['list_cameras'].forEach((v) {
-        listCameras!.add(new Camera.fromJson(v));
+        listCameras!.add(Camera.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['lodgingID'] = this.lodgingID;
-    data['lodging_name'] = this.lodgingName;
-    data['lodgin_acreage'] = this.lodginAcreage;
-    data['animal_name'] = this.animalName;
-    data['number_of_animals'] = this.numberOfAnimals;
-    data['livstock_origin'] = this.livstockOrigin;
-    data['farming_day'] = this.livstockOrigin.toString().split(' ')[0];
-    data['expected_day'] = this.livstockOrigin.toString().split(' ')[0];
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['lodgingID'] = lodgingID;
+    data['lodging_name'] = lodgingName;
+    data['lodgin_acreage'] = lodginAcreage;
+    data['animal_name'] = animalName;
+    data['number_of_animals'] = numberOfAnimals;
+    data['livstock_origin'] = livstockOrigin;
+    data['farming_day'] = livstockOrigin.toString().split(' ')[0];
+    data['expected_day'] = livstockOrigin.toString().split(' ')[0];
 
-    data['number_of_diseases'] = this.numberOfDiseases;
-    if (this.listCameras != null) {
-      data['list_cameras'] = this.listCameras!.map((v) => v.toJson()).toList();
+    data['number_of_diseases'] = numberOfDiseases;
+    if (listCameras != null) {
+      data['list_cameras'] = listCameras!.map((v) => v.toJson()).toList();
     }
     return data;
   }

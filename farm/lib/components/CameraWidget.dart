@@ -1,9 +1,12 @@
+// ignore: file_names
+// ignore: file_names
+// ignore_for_file: file_names, duplicate_ignore
+
 import 'package:farm/components/Mytext.dart';
 import 'package:farm/components/VideoPlayerWidget.dart';
 import 'package:farm/config/theme/AppColor.dart';
 import 'package:farm/model/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_vlc_player/flutter_vlc_player.dart';
 
 class CameraWidget extends StatefulWidget {
   const CameraWidget({super.key, required this.camera});
@@ -32,7 +35,7 @@ class _CameraWidgetState extends State<CameraWidget> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: MyText(
-                text: "${widget.camera.cameraNanme ?? 'Lỗi thông tin'}",
+                text: widget.camera.cameraNanme ?? 'Lỗi thông tin',
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
@@ -83,9 +86,8 @@ class _CameraWidgetState extends State<CameraWidget> {
                 IconButton(
                     splashColor: Colors.transparent,
                     onPressed: () {
-                      print('Snap sort ');
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.camera_alt_rounded,
                       color: Colors.white,
                     )),

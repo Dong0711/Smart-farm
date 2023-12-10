@@ -1,4 +1,3 @@
-import 'package:farm/Request/color.dart';
 import 'package:farm/config/theme/AppColor.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +57,7 @@ class BarChartSample2State extends State<BarChartSample2> {
       aspectRatio: 1,
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Container(
+        child: SizedBox(
           height: 200,
           width: 400,
           // color: Colors.black,
@@ -89,7 +88,7 @@ class BarChartSample2State extends State<BarChartSample2> {
                             reservedSize: 42,
                           ),
                         ),
-                        leftTitles: AxisTitles(
+                        leftTitles: const AxisTitles(
                           sideTitles: SideTitles(showTitles: false),
                         ),
                       ),

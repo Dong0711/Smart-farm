@@ -1,8 +1,9 @@
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 import 'package:farm/components/FarmInfoContainer.dart';
 import 'package:farm/components/Mytext.dart';
-import 'package:farm/components/inforCamera.dart';
 import 'package:farm/config/theme/AppColor.dart';
 import 'package:farm/model/farm.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +18,10 @@ class ListFarmPage extends StatefulWidget {
 
 class _ListFarmPageState extends State<ListFarmPage> {
   List<FarmInfoContainer> listFarm = [];
+  // ignore: non_constant_identifier_names
   Future GetFarms() async {
     var response = await http
         .get(Uri.parse('https://fake-api-smart-farm-zwq6.vercel.app/farm'));
-    print(response);
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
       for (var item in jsonData) {
@@ -41,19 +42,19 @@ class _ListFarmPageState extends State<ListFarmPage> {
     // listFarm=FetchFarmInfo()
   }
 
+  @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Column(
         children: [
           Container(
             height: screenHeight * 0.15,
             decoration: BoxDecoration(gradient: AppColor.gradien[50]),
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const MyText(
+                MyText(
                   text: "QUẢN LÝ CAMERA CỦA TRANG TRẠI",
                   color: Colors.white,
                   fontSize: 20,
@@ -70,10 +71,11 @@ class _ListFarmPageState extends State<ListFarmPage> {
                 return Column(
                   children: [...listFarm],
                 );
-              } else
-                return Center(
+              } else {
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
+              }
             },
           )
         ],

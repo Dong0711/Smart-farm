@@ -1,13 +1,14 @@
+// ignore_for_file: file_names
+
 import 'package:farm/page/MainPage.dart';
 import 'package:farm/page/SigninPage.dart';
 import 'package:flutter/material.dart';
 import 'package:farm/components/My_button.dart';
 import 'package:farm/components/My_text_field.dart';
 import 'package:farm/components/Square_title.dart';
-import 'package:farm/config/theme/AppColor.dart';
 
 class ForgotnamePage extends StatefulWidget {
-  ForgotnamePage({super.key});
+  const ForgotnamePage({super.key});
 
   @override
   State<ForgotnamePage> createState() => _LoginPageState();
@@ -34,7 +35,7 @@ class _LoginPageState extends State<ForgotnamePage> {
             Container(
               width: screenWidth,
               height: screenHeight * 0.2,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage('lib/images/Forgotpass.png'),
                       fit: BoxFit.cover)),
@@ -44,31 +45,31 @@ class _LoginPageState extends State<ForgotnamePage> {
               height: screenHeight * 0.01,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 30),
               child: MyTextField(
                 controller: usernameController,
                 hintText: 'NHẬP MẬT KHẨU MỚI',
                 obscureText: false,
-                icon: Icon(Icons.email),
+                icon: const Icon(Icons.email),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
 
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 30),
               child:
                   Stack(alignment: AlignmentDirectional.centerEnd, children: [
                 MyTextField(
                   controller: passwordController,
                   hintText: 'XÁC NHẬN MẬT KHẨU',
                   obscureText: _showPass,
-                  icon: Icon(Icons.password),
+                  icon: const Icon(Icons.password),
                 ),
                 TextButton(
                     style: TextButton.styleFrom(
-                      onSurface: Colors.transparent,
+                      disabledForegroundColor: Colors.transparent.withOpacity(0.38),
                     ),
                     onPressed: () {
                       setState(() {

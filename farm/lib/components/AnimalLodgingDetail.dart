@@ -80,8 +80,8 @@ class _AnimalLodingDetailState extends State<AnimalLodingDetail> {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.topLeft,
-      padding: EdgeInsets.only(left: 20, top: 30, right: 20, bottom: 10),
-      margin: EdgeInsets.only(left: 20, right: 20, top: 50),
+      padding: const EdgeInsets.only(left: 20, top: 30, right: 20, bottom: 10),
+      margin: const EdgeInsets.only(left: 20, right: 20, top: 50),
       height: 350,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -95,27 +95,27 @@ class _AnimalLodingDetailState extends State<AnimalLodingDetail> {
             Align(
               alignment: Alignment.center,
               child: MyText(
-                text: 'Thông tin ${lodgingName}',
+                text: 'Thông tin $lodgingName',
                 fontSize: 30,
               ),
             ),
-            SizedBox(height: 10),
-            MyText(text: 'Diện tích:${lodginAcreage}'),
-            MyText(text: 'Loại vật nuôi: ${animalName}'),
-            MyText(text: 'Nguồn gốc: ${livstockOrigin}'),
-            MyText(text: 'Số lượng:${numberAnimals}'),
+            const SizedBox(height: 10),
+            MyText(text: 'Diện tích:$lodginAcreage'),
+            MyText(text: 'Loại vật nuôi: $animalName'),
+            MyText(text: 'Nguồn gốc: $livstockOrigin'),
+            MyText(text: 'Số lượng:$numberAnimals'),
             MyText(text: 'Ngày nuôi:${farmingDay.toString().split(' ')[0]}'),
             MyText(
                 text:
                     'Ngày dự kiến thành phẩm: ${expectedDay.toString().split(' ')[0]}'),
-            MyText(text: 'Số con bệnh:${numberOfDiseases}'),
+            MyText(text: 'Số con bệnh:$numberOfDiseases'),
             Align(
               alignment: Alignment.bottomRight,
               child: TextButton(
                 onPressed: () {
                   OpenDialog();
                 },
-                child: MyText(
+                child:const MyText(
                   text: 'Chỉnh sửa',
                   fontWeight: FontWeight.bold,
                 ),
@@ -125,58 +125,61 @@ class _AnimalLodingDetailState extends State<AnimalLodingDetail> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Future OpenDialog() => showDialog(
       context: context,
       builder: (context) => (AlertDialog(
             // titleTextStyle:TextStyle() ,
-            title: Text('${lodgingName}'),
-            content: Container(
+            title: Text('$lodgingName'),
+            content: SizedBox(
               height: 450,
-              child: Column(
-                children: [
-                  TextField(
-                    decoration: InputDecoration(
-                        hintText: "${lodginAcreage}", labelText: "Diện tích"),
-                  ),
-                  TextField(
-                    controller: animalNameControler,
-                    decoration: InputDecoration(
-                        hintText: "${animalName}", labelText: "Loài vật nuôi"),
-                  ),
-                  TextField(
-                    controller: livstockOriginControler,
-                    decoration: InputDecoration(
-                        hintText: "${livstockOrigin}", labelText: "Nguồn gốc"),
-                  ),
-                  TextField(
-                    controller: numberAnimalsControler,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      hintText: "${numberAnimals}",
-                      labelText: "Số lượng",
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(
+                          hintText: "$lodginAcreage", labelText: "Diện tích"),
                     ),
-                  ),
-                  TextField(
-                    controller: farmingDayControler,
-                    keyboardType: TextInputType.datetime,
-                    decoration: InputDecoration(
-                        hintText: "${farmingDay}", labelText: "Ngày nuôi"),
-                  ),
-                  TextField(
-                    controller: expectedDayControler,
-                    keyboardType: TextInputType.datetime,
-                    decoration: InputDecoration(
-                        hintText: "${expectedDay}",
-                        labelText: "Ngày dự kiến xuất chuồng"),
-                  ),
-                  TextField(
-                    controller: numberOfDiseasesControler,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                        hintText: "${numberOfDiseases}",
-                        labelText: "Số con bệnh"),
-                  ),
-                ],
+                    TextField(
+                      controller: animalNameControler,
+                      decoration: InputDecoration(
+                          hintText: "$animalName", labelText: "Loài vật nuôi"),
+                    ),
+                    TextField(
+                      controller: livstockOriginControler,
+                      decoration: InputDecoration(
+                          hintText: "$livstockOrigin", labelText: "Nguồn gốc"),
+                    ),
+                    TextField(
+                      controller: numberAnimalsControler,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        hintText: "$numberAnimals",
+                        labelText: "Số lượng",
+                      ),
+                    ),
+                    TextField(
+                      controller: farmingDayControler,
+                      keyboardType: TextInputType.datetime,
+                      decoration: InputDecoration(
+                          hintText: "$farmingDay", labelText: "Ngày nuôi"),
+                    ),
+                    TextField(
+                      controller: expectedDayControler,
+                      keyboardType: TextInputType.datetime,
+                      decoration: InputDecoration(
+                          hintText: "$expectedDay",
+                          labelText: "Ngày dự kiến xuất chuồng"),
+                    ),
+                    TextField(
+                      controller: numberOfDiseasesControler,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                          hintText: "$numberOfDiseases",
+                          labelText: "Số con bệnh"),
+                    ),
+                  ],
+                ),
               ),
             ),
             actions: [
@@ -184,42 +187,46 @@ class _AnimalLodingDetailState extends State<AnimalLodingDetail> {
                   onPressed: () {
                     Submit();
                   },
-                  child: Text("SUBMIT"))
+                  child: const Text("Hoàn thành"))
             ],
           )));
+  // ignore: non_constant_identifier_names
   void Submit() {
     Navigator.of(context).pop();
-    if (lodginAcreageControler.text.isNotEmpty &&
-        lodginAcreageControler != null)
+    if (lodginAcreageControler.text.isNotEmpty) {
       setState(() {
         lodginAcreage = int.parse(lodginAcreageControler.text);
       });
-    if (animalNameControler.text.isNotEmpty && animalNameControler != null)
+    }
+    if (animalNameControler.text.isNotEmpty) {
       setState(() {
         animalName = animalNameControler.text;
       });
-    if (livstockOriginControler.text.isNotEmpty &&
-        livstockOriginControler != null)
+    }
+    if (livstockOriginControler.text.isNotEmpty) {
       setState(() {
         livstockOrigin = livstockOriginControler.text;
       });
-    if (numberAnimalsControler.text.isNotEmpty &&
-        numberAnimalsControler != null)
+    }
+    if (numberAnimalsControler.text.isNotEmpty) {
       setState(() {
         numberAnimals = int.parse(numberAnimalsControler.text);
       });
-    if (farmingDayControler.text.isNotEmpty && farmingDayControler != null)
+    }
+    if (farmingDayControler.text.isNotEmpty) {
       setState(() {
         farmingDay = farmingDayControler.text;
       });
-    if (expectedDayControler.text.isNotEmpty && expectedDayControler != null)
+    }
+    if (expectedDayControler.text.isNotEmpty) {
       setState(() {
         expectedDay = expectedDayControler.text;
       });
-    if (numberOfDiseasesControler.text.isNotEmpty &&
-        numberOfDiseasesControler != null)
+    }
+    if (numberOfDiseasesControler.text.isNotEmpty) {
       setState(() {
         numberOfDiseases = int.parse(numberOfDiseasesControler.text);
       });
+    }
   }
 }

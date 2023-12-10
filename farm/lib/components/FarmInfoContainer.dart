@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:farm/components/Mytext.dart';
 import 'package:farm/components/inforCamera.dart';
 import 'package:farm/config/theme/AppColor.dart';
@@ -16,6 +14,7 @@ class FarmInfoContainer extends StatefulWidget {
 
 class _FarmInfoContainerState extends State<FarmInfoContainer> {
   List<CameraInfoContainer> listCam = [];
+  // ignore: non_constant_identifier_names
   void LoadCamera() {
     // if(widget.farm!.animalLodging!)
     // {}
@@ -37,10 +36,11 @@ class _FarmInfoContainerState extends State<FarmInfoContainer> {
     LoadCamera();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
       return Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             Container(
@@ -78,14 +78,14 @@ class _FarmInfoContainerState extends State<FarmInfoContainer> {
                       )
                     ],
                   ),
-                  Container(
+                  SizedBox(
                     // color: Colors.black,
                     height: 200,
                     child: ListView(
                       children: [...listCam],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(

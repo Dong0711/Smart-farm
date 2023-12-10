@@ -1,18 +1,14 @@
-import 'package:farm/components/BottomBar.dart';
-import 'package:farm/page/FamrDetailsPage.dart';
+// ignore_for_file: file_names
+
 import 'package:farm/page/ListFarmPage.dart';
-import 'package:farm/page/HomePage.dart';
-import 'package:farm/page/CameraPage.dart';
-import 'package:farm/page/LoginPage.dart';
 import 'package:farm/page/ReportPage.dart';
 import 'package:flutter/material.dart';
 import 'package:farm/page/UserPage.dart';
-
-import '../config/theme/AppColor.dart';
-import 'ForgotnamePage.dart';
 import 'WebsitePage.dart';
 
 class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
   @override
   State<MainPage> createState() => _MainPageState();
 }
@@ -29,17 +25,17 @@ class _MainPageState extends State<MainPage> {
       body: SafeArea(
         child: PageView(
           controller: _pageController,
-          children: [WebSidePage(), ListFarmPage(), ReportPage(), UserPage()],
+          children: const [WebSidePage(), ListFarmPage(), ReportPage(), UserPage()],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.red,
-        selectedItemColor: Color.fromRGBO(111, 156, 103, 1),
-        unselectedItemColor: Color.fromRGBO(127, 131, 135, 1),
+        selectedItemColor: const Color.fromRGBO(111, 156, 103, 1),
+        unselectedItemColor: const Color.fromRGBO(127, 131, 135, 1),
         onTap: (int index) {
           _pageController.animateToPage(
             index,
-            duration: Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 300),
             curve: Curves.easeOutCubic,
           );
           setState(() {
@@ -55,7 +51,7 @@ class _MainPageState extends State<MainPage> {
             ),
             activeIcon: Transform.scale(
               scale: 1.2,
-              child: Icon(Icons.home_filled),
+              child: const Icon(Icons.home_filled),
             ),
             label: 'home',
           ),
@@ -66,7 +62,7 @@ class _MainPageState extends State<MainPage> {
               ),
               activeIcon: Transform.scale(
                 scale: 1.2,
-                child: Icon(Icons.videocam_rounded),
+                child: const Icon(Icons.videocam_rounded),
               ),
               label: 'text'),
           BottomNavigationBarItem(
@@ -76,7 +72,7 @@ class _MainPageState extends State<MainPage> {
               ),
               activeIcon: Transform.scale(
                 scale: 1.2,
-                child: Icon(Icons.bar_chart_sharp),
+                child: const Icon(Icons.bar_chart_sharp),
               ),
               label: 'text'),
           BottomNavigationBarItem(
@@ -86,7 +82,7 @@ class _MainPageState extends State<MainPage> {
               ),
               activeIcon: Transform.scale(
                 scale: 1.2,
-                child: Icon(Icons.person_2_rounded),
+                child: const Icon(Icons.person_2_rounded),
               ),
               label: 'text'),
         ],

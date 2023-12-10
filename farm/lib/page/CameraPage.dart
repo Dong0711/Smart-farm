@@ -1,12 +1,12 @@
+// ignore: file_names
+// ignore: file_names
+// ignore_for_file: file_names, duplicate_ignore
+
 import 'package:farm/components/Mytext.dart';
-import 'package:farm/components/VideoPlayerWidget.dart';
 import 'package:farm/config/theme/AppColor.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_vlc_player/flutter_vlc_player.dart';
 
 import '../components/CameraWidget.dart';
-import '../model/AnimalLodging.dart';
 import '../model/camera.dart';
 
 class CameraPage extends StatefulWidget {
@@ -21,16 +21,15 @@ class _CameraPageState extends State<CameraPage> {
   // final VlcPlayerController vlcPlayerController;
   // autoPlay=false;
   List<CameraWidget> listCamera = [];
+  // ignore: non_constant_identifier_names
   void LoadListCamera() {
-    if (widget.listCamera != null) {
-      for (var item in widget.listCamera) {
-        final CameraWidget cameraWidget = CameraWidget(
-          camera: item,
-        );
-        listCamera.add(cameraWidget);
-      }
+    for (var item in widget.listCamera) {
+      final CameraWidget cameraWidget = CameraWidget(
+        camera: item,
+      );
+      listCamera.add(cameraWidget);
     }
-  }
+    }
 
   @override
   void initState() {
@@ -39,12 +38,13 @@ class _CameraPageState extends State<CameraPage> {
     LoadListCamera();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColor.primary[50],
           title: MyText(
-            text: '${widget.lodgingName}',
+            text: widget.lodgingName,
             fontWeight: FontWeight.bold,
             color: Colors.white,
             fontSize: 25,
@@ -52,7 +52,6 @@ class _CameraPageState extends State<CameraPage> {
           centerTitle: true,
           leading: IconButton(
               onPressed: () {
-                print('click');
                 Navigator.pop(context);
               },
               icon: Container(

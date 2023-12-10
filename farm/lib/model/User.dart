@@ -30,25 +30,25 @@ class User {
       String? birthday,
       String? imgLink}) {
     if (id != null) {
-      this._id = id;
+      _id = id;
     }
     if (name != null) {
-      this._name = name;
+      _name = name;
     }
     if (sex != null) {
-      this._sex = sex;
+      _sex = sex;
     }
     if (email != null) {
-      this._email = email;
+      _email = email;
     }
     if (phoneNumber != null) {
-      this._phoneNumber = phoneNumber;
+      _phoneNumber = phoneNumber;
     }
     if (birthday != null) {
-      this._birthday = birthday;
+      _birthday = birthday;
     }
     if (imgLink != null) {
-      this._imgLink = imgLink;
+      _imgLink = imgLink;
     }
   }
   
@@ -79,14 +79,14 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this._id;
-    data['name'] = this._name;
-    data['sex'] = this._sex;
-    data['email'] = this._email;
-    data['phoneNumber'] = this._phoneNumber;
-    data['birthday'] = this._birthday;
-    data['imgLink'] = this._imgLink;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = _id;
+    data['name'] = _name;
+    data['sex'] = _sex;
+    data['email'] = _email;
+    data['phoneNumber'] = _phoneNumber;
+    data['birthday'] = _birthday;
+    data['imgLink'] = _imgLink;
     return data;
   }
 }

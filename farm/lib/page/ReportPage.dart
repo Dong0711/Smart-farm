@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:convert';
 
 import 'package:farm/components/LineChartWidget2.dart';
@@ -28,6 +30,7 @@ class _ReportPageState extends State<ReportPage> {
   List rain_salary_data = [];
   List temp_data = [];
   List humidity_data = [];
+  // ignore: prefer_typing_uninitialized_variables
   var jsonData;
   Future loadData() async {
     var response = await http.get(
@@ -74,10 +77,10 @@ class _ReportPageState extends State<ReportPage> {
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.only(bottom: 20),
+                margin: const EdgeInsets.only(bottom: 20),
                 alignment: Alignment.bottomCenter,
                 height: 150,
-                child: MyText(
+                child: const MyText(
                   text: 'THỐNG KÊ',
                   color: Colors.white,
                   fontSize: 40,
@@ -86,7 +89,7 @@ class _ReportPageState extends State<ReportPage> {
               ),
               Container(
                 alignment: Alignment.center,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
                   color: Colors.white,
                 ),
@@ -94,7 +97,7 @@ class _ReportPageState extends State<ReportPage> {
                 child: FutureBuilder(
                     future: loadData(),
                     builder: (context, snapsort) {
-                      if (snapsort.connectionState == ConnectionState.done)
+                      if (snapsort.connectionState == ConnectionState.done) {
                         return Column(
                           children: [
                             Padding(
@@ -104,7 +107,7 @@ class _ReportPageState extends State<ReportPage> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  MyText(
+                                  const MyText(
                                     text: "Thời gian",
                                     fontWeight: FontWeight.bold,
                                     // color: Colors.white,
@@ -150,12 +153,12 @@ class _ReportPageState extends State<ReportPage> {
                                                       ));
                                         },
                                         child: MyText(
-                                          text: "${startDay}",
+                                          text: startDay,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
                                         ),
                                       )),
-                                  MyText(
+                                  const MyText(
                                     text: '--',
                                     fontSize: 30,
                                     fontWeight: FontWeight.bold,
@@ -201,7 +204,7 @@ class _ReportPageState extends State<ReportPage> {
                                                       ));
                                         },
                                         child: MyText(
-                                          text: "${endDay}",
+                                          text: endDay,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
                                         ),
@@ -210,12 +213,13 @@ class _ReportPageState extends State<ReportPage> {
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.all(10),
-                              padding: EdgeInsets.only(top: 20, bottom: 20),
+                              margin: const EdgeInsets.all(10),
+                              padding:
+                                  const EdgeInsets.only(top: 20, bottom: 20),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(30),
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                                       color: Color.fromARGB(80, 0, 0, 0),
                                       blurRadius: 15.0,
@@ -227,7 +231,7 @@ class _ReportPageState extends State<ReportPage> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  MyText(
+                                  const MyText(
                                     text:
                                         'BIỂU ĐỒ TỈ LỆ SINH TỬ VẬT NUÔI (con)',
                                     fontWeight: FontWeight.bold,
@@ -265,13 +269,13 @@ class _ReportPageState extends State<ReportPage> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Indicator(
-                                                  color: Color.fromRGBO(
+                                                  color: const Color.fromRGBO(
                                                       44, 82, 39, 1),
                                                   text:
                                                       'Con bình thường (${animals_disease_data[0]})',
                                                   isSquare: true),
                                               Indicator(
-                                                color: Color.fromRGBO(
+                                                color: const Color.fromRGBO(
                                                     252, 215, 51, 1),
                                                 text:
                                                     'con bệnh (${animals_disease_data[0]})',
@@ -287,7 +291,7 @@ class _ReportPageState extends State<ReportPage> {
                                           )
                                         ]),
                                   ),
-                                  MyText(
+                                  const MyText(
                                     text: 'Tổng: 100 con',
                                     fontWeight: FontWeight.bold,
                                     // fontSize: 16,
@@ -295,13 +299,14 @@ class _ReportPageState extends State<ReportPage> {
                                 ],
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 30,
                             ),
                             Container(
                               alignment: Alignment.center,
-                              margin: EdgeInsets.all(10),
-                              padding: EdgeInsets.only(top: 20, bottom: 20),
+                              margin: const EdgeInsets.all(10),
+                              padding:
+                                  const EdgeInsets.only(top: 20, bottom: 20),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(30),
@@ -317,7 +322,7 @@ class _ReportPageState extends State<ReportPage> {
                               child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    MyText(
+                                    const MyText(
                                       text:
                                           'BIỂU ĐỒ TỈ LỆ PHÁT TRIỂN VÀ THỨC ĂN',
                                       fontWeight: FontWeight.bold,
@@ -342,17 +347,18 @@ class _ReportPageState extends State<ReportPage> {
                                         ]))
                                   ]),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 30,
                             ),
                             Container(
                                 alignment: Alignment.center,
-                                margin: EdgeInsets.all(10),
-                                padding: EdgeInsets.only(top: 20, bottom: 20),
+                                margin: const EdgeInsets.all(10),
+                                padding:
+                                    const EdgeInsets.only(top: 20, bottom: 20),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(30),
-                                  boxShadow: [
+                                  boxShadow: const [
                                     BoxShadow(
                                         color: Color.fromARGB(80, 0, 0, 0),
                                         blurRadius: 15.0,
@@ -364,7 +370,7 @@ class _ReportPageState extends State<ReportPage> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    MyText(
+                                    const MyText(
                                       text: 'BIỂU ĐỒ TỈ LỆ MƯA (%)',
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20,
@@ -399,17 +405,18 @@ class _ReportPageState extends State<ReportPage> {
                                     ),
                                   ],
                                 )),
-                            SizedBox(
+                            const SizedBox(
                               height: 30,
                             ),
                             Container(
                                 alignment: Alignment.center,
-                                margin: EdgeInsets.all(10),
-                                padding: EdgeInsets.only(top: 20, bottom: 20),
+                                margin: const EdgeInsets.all(10),
+                                padding:
+                                    const EdgeInsets.only(top: 20, bottom: 20),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(30),
-                                  boxShadow: [
+                                  boxShadow: const [
                                     BoxShadow(
                                         color: Color.fromARGB(80, 0, 0, 0),
                                         blurRadius: 15.0,
@@ -421,7 +428,7 @@ class _ReportPageState extends State<ReportPage> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    MyText(
+                                    const MyText(
                                       text: 'BIỂU ĐỒ NHIỆT ĐỘ (℃)',
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20,
@@ -456,17 +463,18 @@ class _ReportPageState extends State<ReportPage> {
                                     ),
                                   ],
                                 )),
-                            SizedBox(
+                            const SizedBox(
                               height: 30,
                             ),
                             Container(
                                 alignment: Alignment.center,
-                                margin: EdgeInsets.all(10),
-                                padding: EdgeInsets.only(top: 20, bottom: 20),
+                                margin: const EdgeInsets.all(10),
+                                padding:
+                                    const EdgeInsets.only(top: 20, bottom: 20),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(30),
-                                  boxShadow: [
+                                  boxShadow: const [
                                     BoxShadow(
                                         color: Color.fromARGB(80, 0, 0, 0),
                                         blurRadius: 15.0,
@@ -478,7 +486,7 @@ class _ReportPageState extends State<ReportPage> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    MyText(
+                                    const MyText(
                                       text: 'BIỂU ĐỒ ĐỘ ẨM (%)',
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20,
@@ -515,12 +523,13 @@ class _ReportPageState extends State<ReportPage> {
                                 ))
                           ],
                         );
-                      else
-                        return (Center(
+                      } else {
+                        return (const Center(
                           child: CircularProgressIndicator(
                             color: Colors.black,
                           ),
                         ));
+                      }
                     }),
               )
             ],
