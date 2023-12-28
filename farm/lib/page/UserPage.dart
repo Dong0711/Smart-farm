@@ -1,4 +1,3 @@
-
 import 'package:farm/components/Mytext.dart';
 import 'package:farm/components/MyRadioBtn.dart';
 import 'package:farm/components/TextField.dart';
@@ -27,7 +26,6 @@ class _UserPageState extends State<UserPage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
 
     return SingleChildScrollView(
@@ -46,7 +44,7 @@ class _UserPageState extends State<UserPage> {
                     ),
                     child: Column(children: [
                       SizedBox(
-                        height: screenHeight * 0.2,
+                        height: 200,
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
@@ -56,39 +54,43 @@ class _UserPageState extends State<UserPage> {
                               right: 0,
                               child: Container(
                                 width: screenWidth,
-                                height: screenHeight * 0.15,
-                                decoration:
-                                    BoxDecoration(gradient: AppColor.gradien[50]),
-                                child: AppBar(
-                                  elevation: 0,
-                                  backgroundColor: Colors.transparent,
-                                  title: const MyText(
-                                    text: "THÔNG TIN CỦA TÔI",
-                                    color: Colors.white,
-                                    // fontSize: 22,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                  centerTitle: true,
-                                  actions: [
-                                    IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          isEnableMyTextFormField =
-                                              !isEnableMyTextFormField;
-                                        });
-                                      },
-                                      icon:
-                                          const Icon(Icons.border_color_outlined),
-                                    )
+                                height: 150,
+                                decoration: BoxDecoration(
+                                    gradient: AppColor.gradien[50]),
+                                child: Column(
+                                  children: [
+                                    AppBar(
+                                      elevation: 0,
+                                      backgroundColor: Colors.transparent,
+                                      centerTitle: true,
+                                      actions: [
+                                        IconButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              isEnableMyTextFormField =
+                                                  !isEnableMyTextFormField;
+                                            });
+                                          },
+                                          icon: const Icon(
+                                              Icons.border_color_outlined),
+                                        )
+                                      ],
+                                    ),
+                                    const MyText(
+                                      text: "THÔNG TIN CỦA TÔI",
+                                      color: Colors.white,
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w700,
+                                    ),
                                   ],
                                 ),
                               ),
                             ),
                             Positioned(
-                              top: (screenHeight * 0.15) / 2,
+                              top: 100,
                               child: Container(
-                                height: screenWidth * 0.25,
-                                width: screenWidth * 0.25,
+                                height: 100,
+                                width: 100,
                                 // width: 100,
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
@@ -111,48 +113,44 @@ class _UserPageState extends State<UserPage> {
                         onTap: () {
                           //todo
                         },
-                        child: const MyText(
-                          text: 'Thay đổi ảnh đại diện',
-                          color: Colors.grey,
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold,
+                        child: TextButton(
+                          onPressed: () {},
+                          child: const MyText(
+                            text: 'Thay đổi ảnh đại diện',
+                            color: Colors.grey,
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.fromLTRB(
-                            screenWidth * 0.05,
-                            screenHeight * 0.03,
-                            screenWidth * 0.05,
-                            screenWidth * 0.05),
+                        padding:
+                            const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
                         child: Column(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.fromLTRB(screenWidth * 0.03,
-                                      0, 0, screenWidth * 0.03),
-                                  child: const Text(
-                                    'Thông tin cơ bản',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15),
-                                  ),
+                            const Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  'Thông tin cơ bản',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
                                 ),
-                              ],
+                              ),
                             ),
                             Container(
-                                width: screenWidth,
-                                height: screenHeight * 0.4,
+                                width: 500,
+                                height: 400,
                                 decoration: BoxDecoration(
-                                    color: const Color.fromARGB(255, 255, 255, 255),
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
                                     borderRadius: BorderRadius.circular(20),
                                     boxShadow: kElevationToShadow[3]),
                                 child: Padding(
-                                  padding: EdgeInsets.only(
-                                      top: screenHeight * 0.02,
-                                      left: screenWidth * 0.04,
-                                      right: screenWidth * 0.04),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 20),
                                   child: Column(
                                     children: [
                                       // TextField()
@@ -167,14 +165,14 @@ class _UserPageState extends State<UserPage> {
                                             fontWeight: FontWeight.bold,
                                           ),
                                           MyText(
-                                            text: "Giới tính                ",
+                                            text: "Giới tính            ",
                                             fontSize: 14,
                                             color: AppColor.subText[50],
                                             fontWeight: FontWeight.bold,
                                           )
                                         ],
                                       ),
-          
+
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -184,14 +182,14 @@ class _UserPageState extends State<UserPage> {
                                           //     text: '${snapshot.data?.name}'
                                           //         .toUpperCase())
                                           SizedBox(
-                                              width: screenWidth * 0.5,
-                                              height: screenHeight * 0.05,
+                                              width: 250,
+                                              height: 50,
                                               child: MyTextFormField(
                                                   isEnabled:
                                                       isEnableMyTextFormField,
                                                   text:
                                                       '${snapshot.data?.name}')),
-          
+
                                           Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceAround,
@@ -251,7 +249,7 @@ class _UserPageState extends State<UserPage> {
                                           ),
                                         ],
                                       ),
-          
+
                                       Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -261,8 +259,8 @@ class _UserPageState extends State<UserPage> {
                                             //     text: '${snapshot.data?.name}'
                                             //         .toUpperCase())
                                             SizedBox(
-                                                width: screenWidth * 0.8,
-                                                height: screenHeight * 0.05,
+                                                width: 400,
+                                                height: 50,
                                                 child: MyTextFormField(
                                                     isEnabled:
                                                         isEnableMyTextFormField,
@@ -285,7 +283,7 @@ class _UserPageState extends State<UserPage> {
                                           ),
                                         ],
                                       ),
-          
+
                                       Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -295,8 +293,8 @@ class _UserPageState extends State<UserPage> {
                                             //     text: '${snapshot.data?.name}'
                                             //         .toUpperCase())
                                             SizedBox(
-                                                width: screenWidth * 0.8,
-                                                height: screenHeight * 0.05,
+                                                width: 400,
+                                                height: 50,
                                                 child: MyTextFormField(
                                                     isEnabled:
                                                         isEnableMyTextFormField,
@@ -318,7 +316,7 @@ class _UserPageState extends State<UserPage> {
                                           ),
                                         ],
                                       ),
-          
+
                                       // MyTextFormField(
                                       //     isEnabled: isEnableMyTextFormField,
                                       //     text: '${snapshot.data?.name}'
@@ -328,40 +326,41 @@ class _UserPageState extends State<UserPage> {
                                             ? () {
                                                 showCupertinoModalPopup(
                                                     context: context,
-                                                    builder:
-                                                        (BuildContext context) =>
-                                                            SizedBox(
-                                                              height: 120,
-                                                              child:
-                                                                  CupertinoDatePicker(
-                                                                mode:
-                                                                    CupertinoDatePickerMode
-                                                                        .date,
-                                                                //  use24hFormat: true,
-                                                                backgroundColor:
-                                                                    Colors.white,
-          
-                                                                initialDateTime: DateTime(
-                                                                    int.parse(
-                                                                        '${snapshot.data!.birthday?.split('/')[2]}'),
-                                                                    int.parse(
-                                                                        '${snapshot.data!.birthday?.split('/')[1]}'),
-                                                                    int.parse(
-                                                                        '${snapshot.data!.birthday?.split('/')[0]}')),
-                                                                onDateTimeChanged:
-                                                                    (DateTime
-                                                                        newTime) {
-                                                                  setState(() => snapshot
-                                                                          .data
-                                                                          ?.birthday =
-                                                                      ('${newTime.day}/${newTime.month}/${newTime.year}'));
-                                                                },
-                                                              ),
-                                                            ));
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        SizedBox(
+                                                          height: 120,
+                                                          child:
+                                                              CupertinoDatePicker(
+                                                            mode:
+                                                                CupertinoDatePickerMode
+                                                                    .date,
+                                                            //  use24hFormat: true,
+                                                            backgroundColor:
+                                                                Colors.white,
+
+                                                            initialDateTime: DateTime(
+                                                                int.parse(
+                                                                    '${snapshot.data!.birthday?.split('/')[2]}'),
+                                                                int.parse(
+                                                                    '${snapshot.data!.birthday?.split('/')[1]}'),
+                                                                int.parse(
+                                                                    '${snapshot.data!.birthday?.split('/')[0]}')),
+                                                            onDateTimeChanged:
+                                                                (DateTime
+                                                                    newTime) {
+                                                              setState(() => snapshot
+                                                                      .data
+                                                                      ?.birthday =
+                                                                  ('${newTime.day}/${newTime.month}/${newTime.year}'));
+                                                            },
+                                                          ),
+                                                        ));
                                               }
                                             : null,
                                         child: Padding(
-                                          padding: const EdgeInsets.only(top: 5),
+                                          padding:
+                                              const EdgeInsets.only(top: 5),
                                           child: Container(
                                               decoration: BoxDecoration(
                                                   color: Colors.white,
@@ -369,11 +368,12 @@ class _UserPageState extends State<UserPage> {
                                                       BorderRadius.circular(3),
                                                   boxShadow:
                                                       kElevationToShadow[4]),
-                                              width: screenWidth * 0.8,
-                                              height: screenHeight * 0.04,
+                                              width: 400,
+                                              height: 40,
                                               child: Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.spaceAround,
+                                                    MainAxisAlignment
+                                                        .spaceAround,
                                                 children: [
                                                   MyText(
                                                     text:
@@ -381,9 +381,8 @@ class _UserPageState extends State<UserPage> {
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                   const Padding(
-                                                    padding:
-                                                        EdgeInsets.only(
-                                                            top: 10, bottom: 10),
+                                                    padding: EdgeInsets.only(
+                                                        top: 10, bottom: 10),
                                                     child: VerticalDivider(
                                                       color: Colors.black,
                                                       thickness: 2,
@@ -395,9 +394,8 @@ class _UserPageState extends State<UserPage> {
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                   const Padding(
-                                                    padding:
-                                                        EdgeInsets.only(
-                                                            top: 10, bottom: 10),
+                                                    padding: EdgeInsets.only(
+                                                        top: 10, bottom: 10),
                                                     child: VerticalDivider(
                                                       thickness: 2,
                                                       color: Colors.black,
@@ -419,21 +417,17 @@ class _UserPageState extends State<UserPage> {
                         ),
                       ),
                       Padding(
-                          padding: EdgeInsets.fromLTRB(screenWidth * 0.05, 0,
-                              screenWidth * 0.05, screenWidth * 0.05),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 20, horizontal: 30),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Row(
+                              const Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.fromLTRB(
-                                        screenWidth * 0.03,
-                                        0,
-                                        0,
-                                        screenWidth * 0.03),
-                                    child: const Text(
+                                    padding: EdgeInsets.all(10),
+                                    child: Text(
                                       'Mật khẩu và bảo mật',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -443,17 +437,16 @@ class _UserPageState extends State<UserPage> {
                                 ],
                               ),
                               Container(
-                                  width: screenWidth,
-                                  height: screenHeight * 0.3,
+                                  width: 500,
+                                  height: 300,
                                   decoration: BoxDecoration(
-                                      color: const Color.fromARGB(255, 255, 255, 255),
+                                      color: const Color.fromARGB(
+                                          255, 255, 255, 255),
                                       borderRadius: BorderRadius.circular(20),
                                       boxShadow: kElevationToShadow[3]),
                                   child: Padding(
-                                      padding: EdgeInsets.only(
-                                          top: screenHeight * 0.02,
-                                          left: screenWidth * 0.04,
-                                          right: screenWidth * 0.04),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 20, horizontal: 20),
                                       child: Column(children: [
                                         Column(
                                           mainAxisAlignment:
@@ -470,8 +463,9 @@ class _UserPageState extends State<UserPage> {
                                               ],
                                             ),
                                             Container(
+                                              margin: const EdgeInsets.only(top: 10),
                                               height: 50,
-                                              width: screenWidth * 0.8,
+                                              width: 400,
                                               decoration: BoxDecoration(
                                                   boxShadow:
                                                       kElevationToShadow[3],
@@ -480,44 +474,43 @@ class _UserPageState extends State<UserPage> {
                                                   borderRadius:
                                                       BorderRadius.circular(3)),
                                               child: Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: screenHeight * 0.01,
-                                                    right: screenHeight * 0.01),
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10),
                                                 child: Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
                                                     Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceAround,
                                                       children: [
                                                         Container(
-                                                          height:
-                                                              screenWidth * 0.1,
-                                                          width:
-                                                              screenWidth * 0.1,
+                                                          height: 40,
+                                                          width: 40,
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
                                                                           50),
-                                                              color:
-                                                                  const Color.fromRGBO(
-                                                                      0,
-                                                                      0,
-                                                                      0,
-                                                                      0.8)),
+                                                              color: const Color
+                                                                  .fromRGBO(0,
+                                                                  0, 0, 0.8)),
                                                           child: const Icon(
                                                             Icons.lock,
                                                             color: Colors.white,
                                                           ),
                                                         ),
                                                         Padding(
-                                                          padding: EdgeInsets.only(
-                                                              left: screenWidth *
-                                                                  0.02),
+                                                          padding:
+                                                              const EdgeInsets.only(
+                                                                  left: 20),
                                                           child: Column(
                                                             mainAxisSize:
-                                                                MainAxisSize.min,
+                                                                MainAxisSize
+                                                                    .min,
                                                             children: [
                                                               MyText(
                                                                 text: 'MẬT KHẨU'
@@ -535,10 +528,15 @@ class _UserPageState extends State<UserPage> {
                                                     ),
                                                     TextButton(
                                                       onPressed: () {},
-                                                      style: TextButton.styleFrom(
-                                                          backgroundColor:
-                                                              const Color.fromRGBO(
-                                                                  0, 0, 0, 0.8)),
+                                                      style:
+                                                          TextButton.styleFrom(
+                                                              backgroundColor:
+                                                                  const Color
+                                                                      .fromRGBO(
+                                                                      0,
+                                                                      0,
+                                                                      0,
+                                                                      0.8)),
                                                       child: const MyText(
                                                         text: 'ĐỔI MẬT KHẨU',
                                                         fontWeight:
@@ -568,7 +566,7 @@ class _UserPageState extends State<UserPage> {
                                             ),
                                             Container(
                                               height: 50,
-                                              width: screenWidth * 0.8,
+                                              width: 400,
                                               decoration: BoxDecoration(
                                                   boxShadow:
                                                       kElevationToShadow[3],
@@ -579,9 +577,8 @@ class _UserPageState extends State<UserPage> {
                                                   borderRadius:
                                                       BorderRadius.circular(3)),
                                               child: Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: screenHeight * 0.01,
-                                                    right: screenHeight * 0.01),
+                                                padding: const EdgeInsets.symmetric(
+                                                    horizontal: 10),
                                                 child: Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
@@ -590,10 +587,8 @@ class _UserPageState extends State<UserPage> {
                                                     Row(
                                                       children: [
                                                         Container(
-                                                          height:
-                                                              screenWidth * 0.1,
-                                                          width:
-                                                              screenWidth * 0.1,
+                                                          height: 40,
+                                                          width: 40,
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   BorderRadius
@@ -605,12 +600,13 @@ class _UserPageState extends State<UserPage> {
                                                               .email_outlined),
                                                         ),
                                                         Padding(
-                                                          padding: EdgeInsets.only(
-                                                              left: screenWidth *
-                                                                  0.02),
+                                                          padding:
+                                                              const EdgeInsets.only(
+                                                                  left: 10),
                                                           child: Column(
                                                             mainAxisSize:
-                                                                MainAxisSize.min,
+                                                                MainAxisSize
+                                                                    .min,
                                                             children: [
                                                               MyText(
                                                                 text: 'EMAIL'
@@ -618,8 +614,8 @@ class _UserPageState extends State<UserPage> {
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                                color:
-                                                                    Colors.white,
+                                                                color: Colors
+                                                                    .white,
                                                               ),
                                                               // MyText(
                                                               //   text: turnOnEmail
@@ -645,9 +641,10 @@ class _UserPageState extends State<UserPage> {
                                                               !turnOnEmail;
                                                         });
                                                       },
-                                                      style: TextButton.styleFrom(
-                                                          backgroundColor:
-                                                              Colors.white),
+                                                      style:
+                                                          TextButton.styleFrom(
+                                                              backgroundColor:
+                                                                  Colors.white),
                                                       child: MyText(
                                                         text: turnOnEmail
                                                             ? 'TẮT'
@@ -665,7 +662,7 @@ class _UserPageState extends State<UserPage> {
                                             ),
                                             Container(
                                               height: 50,
-                                              width: screenWidth * 0.8,
+                                              width: 400,
                                               decoration: BoxDecoration(
                                                   boxShadow:
                                                       kElevationToShadow[3],
@@ -676,9 +673,8 @@ class _UserPageState extends State<UserPage> {
                                                   borderRadius:
                                                       BorderRadius.circular(3)),
                                               child: Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: screenHeight * 0.01,
-                                                    right: screenHeight * 0.01),
+                                                padding: const EdgeInsets.symmetric(
+                                                    horizontal: 10),
                                                 child: Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
@@ -687,10 +683,8 @@ class _UserPageState extends State<UserPage> {
                                                     Row(
                                                       children: [
                                                         Container(
-                                                          height:
-                                                              screenWidth * 0.1,
-                                                          width:
-                                                              screenWidth * 0.1,
+                                                          height: 40,
+                                                          width: 40,
                                                           decoration: BoxDecoration(
                                                               borderRadius:
                                                                   BorderRadius
@@ -702,12 +696,13 @@ class _UserPageState extends State<UserPage> {
                                                               .local_phone_sharp),
                                                         ),
                                                         Padding(
-                                                          padding: EdgeInsets.only(
-                                                              left: screenWidth *
-                                                                  0.02),
+                                                          padding:
+                                                              const EdgeInsets.only(
+                                                                  left: 10),
                                                           child: Column(
                                                             mainAxisSize:
-                                                                MainAxisSize.min,
+                                                                MainAxisSize
+                                                                    .min,
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
                                                                     .start,
@@ -718,21 +713,9 @@ class _UserPageState extends State<UserPage> {
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                                color:
-                                                                    Colors.white,
+                                                                color: Colors
+                                                                    .white,
                                                               ),
-                                                              // MyText(
-                                                              //   text: turnOnPhonNum
-                                                              //       ? 'ĐÃ BẬT'
-                                                              //       : 'ĐÃ TẮT'
-                                                              //           .toUpperCase(),
-                                                              //   fontWeight:
-                                                              //       FontWeight
-                                                              //           .bold,
-                                                              //   fontSize: 10,
-                                                              //   color:
-                                                              //       Colors.white,
-                                                              // )
                                                             ],
                                                           ),
                                                         ),
@@ -745,9 +728,10 @@ class _UserPageState extends State<UserPage> {
                                                               !turnOnPhonNum;
                                                         });
                                                       },
-                                                      style: TextButton.styleFrom(
-                                                          backgroundColor:
-                                                              Colors.white),
+                                                      style:
+                                                          TextButton.styleFrom(
+                                                              backgroundColor:
+                                                                  Colors.white),
                                                       child: MyText(
                                                         text: turnOnPhonNum
                                                             ? 'TẮT'

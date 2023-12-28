@@ -85,13 +85,13 @@ class _FarmInfoState extends State<FarmInfo> {
                   color: Colors.white,
                 ),
                 MyText(
-                  text: 'Lương mưa: ${widget.info.rainSalary}mm}',
+                  text: 'Lương mưa: ${widget.info.rainSalary}mm',
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
                 MyText(
-                  text: 'Diện tích ${widget.info.acreage}m2',
+                  text: 'Diện tích ${widget.info.acreage}m²',
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,

@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 class AnimalLodging {
   int? lodgingID;
   String? lodgingName;
-  int? lodginAcreage;
+  double? lodginAcreage;
   String? animalName;
   int? numberOfAnimals;
   String? livstockOrigin;
@@ -29,7 +29,7 @@ class AnimalLodging {
   AnimalLodging.fromJson(Map<String, dynamic> json) {
     lodgingID = json['lodgingID'];
     lodgingName = json['lodging_name'];
-    lodginAcreage = json['lodgin_acreage'];
+    lodginAcreage = (json['lodgin_acreage'] as num).toDouble();
     animalName = json['animal_name'];
     numberOfAnimals = json['number_of_animals'];
     livstockOrigin = json['livstock_origin'];

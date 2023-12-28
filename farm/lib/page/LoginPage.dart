@@ -23,7 +23,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
@@ -33,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(children: [
             Container(
               width: screenWidth,
-              height: screenHeight * 0.3,
+              height: 350,
               decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage('lib/images/backgroundhome.png'),
@@ -41,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
               // child: Text('this is container'),
             ),
             SizedBox(
-              height: screenHeight * 0.04,
+              height: 50,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -67,8 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                   icon: const Icon(Icons.password),
                 ),
                 TextButton(
-                    style: TextButton.styleFrom(
-                    ),
+                    style: TextButton.styleFrom(),
                     onPressed: () {
                       setState(() {
                         _showPass = !_showPass;
@@ -84,25 +82,24 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(
               height: 15,
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    'Quên mật khẩu, tài khoản?',
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ],
+            Padding(
+              padding: const EdgeInsets.only(right: 30),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Quên mật khẩu, tài khoản?',
+                      style: TextStyle(color: Colors.grey),
+                    )),
               ),
             ),
             SizedBox(
-              height: screenHeight * 0.03,
+              height: 50,
             ),
 
             Mybutton(
               text: 'ĐĂNG NHẬP',
-              
               fontSize: 20,
               onPressed: () {
                 Navigator.of(context).pushReplacement(
@@ -113,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
             // padding: EdgeInsets.symmetric(horizontal: ),
 
             SizedBox(
-              height: MediaQuery.of(context).size.width * 0.05,
+              height: 30,
             ),
             //user input
 
@@ -139,33 +136,40 @@ class _LoginPageState extends State<LoginPage> {
                 // children: [Expanded(child: child)],
                 ),
             SizedBox(
-              height: screenHeight * 0.04,
+              height: 30,
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SquareTile(imagePath: 'lib/images/google.png'),
+                TextButton(
+                    onPressed: () {},
+                    child: SquareTile(imagePath: 'lib/images/google.png')),
                 SizedBox(
                   width: 40,
                 ),
-                SquareTile(imagePath: 'lib/images/facebook.png'),
+                TextButton(
+                    onPressed: () {},
+                    child: SquareTile(imagePath: 'lib/images/facebook.png')),
               ],
             ),
             const SizedBox(
-              height: 50,
+              height: 30,
             ),
 
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   'Chưa có tài khoản? ',
                   style: TextStyle(color: Colors.grey),
                 ),
-                Text(
-                  'Tạo ngay!',
-                  style: TextStyle(
-                      color: Colors.blue, fontWeight: FontWeight.bold),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Tạo ngay!',
+                    style: TextStyle(
+                        color: Colors.blue, fontWeight: FontWeight.bold),
+                  ),
                 )
               ],
             )

@@ -64,85 +64,87 @@ class _FarmDetailsState extends State<FarmDetails> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    return SingleChildScrollView(
-        child: Column(children: [
-      AppBar(
-          backgroundColor: AppColor.primary[50],
-          centerTitle: true,
-          title: MyText(
-            text: widget.farmName,
-            color: Colors.white,
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-          ),
-          leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(50),
-              ),
-              child: Icon(
-                Icons.chevron_left_outlined,
-                size: 30,
-                color: AppColor.primary[50],
-              ),
-            ),
-          )),
-      Container(
-        margin: const EdgeInsets.only(left: 20, right: 20, top: 50),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-          child: Image.network(
-            height: screenWidth * 9 / 16,
-            width: screenWidth,
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFfN76csuH0MzcEciwZi5XKoouGLjGGpP_UEkI-cWqbQvJDBwUsNUBFiA5cPWXbz6MENo&usqp=CAU',
-            fit: BoxFit.fill,
-          ),
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.only(left: 20, right: 20),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-            color: AppColor.primary[10],
-            borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(30),
-                bottomRight: Radius.circular(30))),
-        height: 70,
-        child: Column(
-          children: [
-            MyText(
-              text: "DIỆM TÍCH: ${widget.farmAcreage}m2",
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+            backgroundColor: AppColor.primary[50],
+            centerTitle: true,
+            title: MyText(
+              text: widget.farmName,
+              color: Colors.white,
+              fontSize: 25,
               fontWeight: FontWeight.bold,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+            leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child: Icon(
+                  Icons.chevron_left_outlined,
+                  size: 30,
+                  color: AppColor.primary[50],
+                ),
+              ),
+            )),
+        body: SingleChildScrollView(
+            child: Column(children: [
+          Container(
+            margin: const EdgeInsets.only(left: 20, right: 20, top: 50),
+            child: ClipRRect(
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+              child: Image.network(
+                height: screenWidth * 9 / 16,
+                width: screenWidth,
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFfN76csuH0MzcEciwZi5XKoouGLjGGpP_UEkI-cWqbQvJDBwUsNUBFiA5cPWXbz6MENo&usqp=CAU',
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(left: 20, right: 20),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                color: AppColor.primary[10],
+                borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30))),
+            height: 70,
+            child: Column(
               children: [
-                MyText(text: "Địa chỉ: ${widget.farmLocal}")
+                MyText(
+                  text: "DIỆM TÍCH: ${widget.farmAcreage}m2",
+                  fontWeight: FontWeight.bold,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [MyText(text: "Địa chỉ: ${widget.farmLocal}")],
+                )
               ],
-            )
-          ],
-        ),
+            ),
+          ),
+          FutureBuilder(
+            future: LoadAnimalLodginDetail(),
+            builder: ((context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return Column(
+                  children: [...listAnimalLodging],
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            }),
+          ),
+        ])),
       ),
-      FutureBuilder(
-        future: LoadAnimalLodginDetail(),
-        builder: ((context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return Column(
-              children: [...listAnimalLodging],
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        }),
-      ),
-    ]));
+    );
   }
 
   // Future get

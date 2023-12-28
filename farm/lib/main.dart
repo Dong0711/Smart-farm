@@ -1,9 +1,15 @@
+import 'package:farm/firebase_api.dart';
+import 'package:farm/firebase_options.dart';
+import 'package:farm/page/WebsitePage.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:farm/page/LoginPage.dart';
-// ignore: depend_on_referenced_packages
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await FirebaseApi().initNotifications();
   runApp(const MyApp());
 }
 
@@ -26,6 +32,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Open Sans'),
       home: const LoginPage(),
+      routes: {
+        '/mainPage': (context) =>const WebSidePage(),
+        // other routes...
+      },
     );
   }
 }

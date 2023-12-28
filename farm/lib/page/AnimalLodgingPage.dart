@@ -52,7 +52,8 @@ class _AnimalLodgingPageState extends State<AnimalLodgingPage> {
           backgroundColor: AppColor.primary[50],
           title: MyText(
             text: '${widget.farm.name}',
-            fontWeight: FontWeight.bold,            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
             fontSize: 25,
           ),
           centerTitle: true,
@@ -112,6 +113,7 @@ class _AnimalLodgingPageState extends State<AnimalLodgingPage> {
                     ),
                     SizedBox(
                       // color: Colors.black,
+
                       height: 400,
                       child: ListView(
                         children: [...listCam],
@@ -124,8 +126,7 @@ class _AnimalLodgingPageState extends State<AnimalLodgingPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         MyText(
-                          text:
-                              "Nhiệt độ: ${widget.farm.temperature ?? 'lỗi'}",
+                          text: "Nhiệt độ: ${widget.farm.temperature ?? 'lỗi'}",
                           fontSize: 10,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -137,8 +138,7 @@ class _AnimalLodgingPageState extends State<AnimalLodgingPage> {
                           color: Colors.white,
                         ),
                         MyText(
-                          text:
-                              'Lương mưa: ${widget.farm.rainSalary ?? "lỗi"}',
+                          text: 'Lương mưa: ${widget.farm.rainSalary ?? "lỗi"}',
                           fontSize: 10,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,

@@ -4,10 +4,10 @@ class Farm {
   int? id;
   String? name;
   String? local;
-  int? acreage;
-  int? temperature;
-  int? humidity;
-  int? rainSalary;
+  double? acreage;
+  double? temperature;
+  double? humidity;
+  double? rainSalary;
   String? image;
   List<AnimalLodging>? animalLodging;
 
@@ -26,10 +26,10 @@ class Farm {
     id = json['id'];
     name = json['name'];
     local = json['local'];
-    acreage = json['acreage'];
-    temperature = json['temperature'];
-    humidity = json['humidity'];
-    rainSalary = json['rain_salary'];
+    acreage = (json['acreage'] as num).toDouble();
+    temperature = (json['temperature'] as num).toDouble();
+    humidity = (json['humidity'] as num).toDouble();
+    rainSalary = (json['rain_salary'] as num).toDouble();
     image = json['image'];
     if (json['animal_lodging'] != null) {
       animalLodging = <AnimalLodging>[];

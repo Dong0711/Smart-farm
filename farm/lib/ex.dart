@@ -1,167 +1,265 @@
+import 'dart:async';
+import 'dart:convert';
+import 'package:farm/components/Mytext.dart';
 import 'package:farm/config/theme/AppColor.dart';
-import 'package:fl_chart/fl_chart.dart';
+import 'package:farm/model/VideoRewind.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:video_player/video_player.dart';
+import 'package:chewie/chewie.dart';
 
-class BarChartSample2 extends StatefulWidget {
-  BarChartSample2({super.key});
-  final Color? leftBarColor = AppColor.primary[90];
-  final Color? rightBarColor = AppColor.sub[50];
-
+class VideoRewindPage extends StatefulWidget {
+  const VideoRewindPage({super.key, required this.animalLodgingName});
+  final String animalLodgingName;
   @override
-  State<StatefulWidget> createState() => BarChartSample2State();
+  State<VideoRewindPage> createState() => _VideoRewindPageState();
 }
 
-class BarChartSample2State extends State<BarChartSample2> {
-  final double width = 7;
+class _VideoRewindPageState extends State<VideoRewindPage> {
+  late VideoPlayerController _controller;
+  late ChewieController _chewieController;
 
-  late List<BarChartGroupData> rawBarGroups;
-  late List<BarChartGroupData> showingBarGroups;
+  late VideoRewind videoRewind;
+  Future fetchVideoRewind() async {
+    print('go there');
+    final response = await http.get(
+        Uri.parse('https://fake-api-smart-farm-zwq6.vercel.app/video_rewind'));
+
+    if (response.statusCode == 200) {
+//  print(object)
+      var jsonData = jsonDecode(response.body);
+
+      videoRewind = new VideoRewind.fromJson(jsonData);
+      print('video Link ${videoRewind.videoRewindLink}');
+      print('lengt of list Link ${videoRewind.videoRewindProperties?.length}');
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load album');
+    }
+  }
+
+  Future<void> SetUp() async {
+    // fetchVideoRewind();
+    _controller = VideoPlayerController.network(
+      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+    );
+
+    // Initialize the controller and store the Future for later use.
+    _chewieController = ChewieController(
+      videoPlayerController: _controller,
+      aspectRatio: 16 / 9,
+      autoPlay: true,
+      looping: true,
+    );
+    // Use the controller to loop the video.
+    // _controller.play();
+  }
 
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
-    final barGroup1 = makeGroupData(0, 2, 1);
-    final barGroup2 = makeGroupData(1, 2, 5);
-    final barGroup3 = makeGroupData(2, 2, 5);
-    final barGroup4 = makeGroupData(3, 2, 4);
-    final barGroup5 = makeGroupData(4, 2, 6);
-    final barGroup6 = makeGroupData(5, 2, 1.5);
-    final barGroup7 = makeGroupData(6, 2, 1.5);
-    final barGroup8 = makeGroupData(7, 2, 3);
-    final barGroup9 = makeGroupData(8, 2, 4);
-    final barGroup10 = makeGroupData(9, 2, 1.5);
-    final barGroup11 = makeGroupData(10, 2, 1.5);
-    final barGroup12 = makeGroupData(11, 2, 1.5);
+    fetchVideoRewind();
+  }
 
-    final items = [
-      barGroup1,
-      barGroup2,
-      barGroup3,
-      barGroup4,
-      barGroup5,
-      barGroup6,
-      barGroup7,
-      barGroup8,
-      barGroup9,
-      barGroup10,
-      barGroup11,
-      barGroup12
-    ];
-    rawBarGroups = items;
-    showingBarGroups = rawBarGroups;
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+    _chewieController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1,
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: SizedBox(
-          height: 200,
-          width: 400,
-          // color: Colors.black,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              const SizedBox(
-                height: 38,
-              ),
-              SizedBox(
-                height: 200,
-                child: Expanded(
-                  child: BarChart(
-                    BarChartData(
-                      maxY: 20,
-                      titlesData: FlTitlesData(
-                        show: true,
-                        rightTitles: const AxisTitles(
-                          sideTitles: SideTitles(showTitles: false),
-                        ),
-                        topTitles: const AxisTitles(
-                          sideTitles: SideTitles(showTitles: false),
-                        ),
-                        bottomTitles: AxisTitles(
-                          sideTitles: SideTitles(
-                            showTitles: true,
-                            getTitlesWidget: bottomTitles,
-                            reservedSize: 42,
-                          ),
-                        ),
-                        leftTitles: const AxisTitles(
-                          sideTitles: SideTitles(showTitles: false),
-                        ),
-                      ),
-                      borderData: FlBorderData(
-                          show: true,
-                          border: Border.all(
-                              color: Colors.black38,
-                              style: BorderStyle.solid,
-                              width: 2)),
-                      barGroups: showingBarGroups,
-                      gridData: const FlGridData(show: true),
-                    ),
-                  ),
+    return Scaffold(
+        appBar: AppBar(
+            centerTitle: true,
+            backgroundColor: AppColor.primary[50],
+            title: Text(
+              widget.animalLodgingName,
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+            ),
+            leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child: Icon(
+                  Icons.chevron_left_outlined,
+                  size: 30,
+                  color: AppColor.primary[50],
                 ),
               ),
-              const SizedBox(
-                height: 12,
+            )),
+        body: Column(
+          children: [
+            SizedBox(
+              height: 15,
+            ),
+            FutureBuilder(
+              future: SetUp(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return AspectRatio(
+                      aspectRatio: 16 / 9,
+                      child: Chewie(controller: _chewieController));
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              margin: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                  borderRadius: BorderRadius.circular(20),
+                  // border: Border.all(color: Colors.black),
+                  boxShadow: kElevationToShadow[3]),
+              height: 400,
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+              child: FutureBuilder(
+                future: fetchVideoRewind(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return ListView.builder(
+                      itemCount: videoRewind.videoRewindProperties!.length,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          elevation: 5,
+                          // shadowColor: Colors.amber,
+                          color: videoRewind.videoRewindProperties![index]
+                                      .videoRewindType ==
+                                  1
+                              ? Colors.red.shade300
+                              : Colors.white,
+                          child: ListTile(
+                            title: Row(
+                              children: [
+                                Text(
+                                  'Thời gian: ${videoRewind.videoRewindProperties![index].videoRewindTime} | ${videoRewind.videoRewindProperties![index].videoRewindDate.toString().split(' ')[0]}',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            ),
+                            subtitle: Text(
+                                '${videoRewind.videoRewindProperties![index].videoRewindTitle}',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                )),
+                            onTap: () => _chewieController.seekTo(Duration(
+                                hours: videoRewind.videoRewindProperties![index]
+                                        .videoRewindH ??
+                                    0,
+                                minutes: videoRewind
+                                        .videoRewindProperties![index]
+                                        .videoRewindM ??
+                                    0,
+                                seconds: videoRewind
+                                        .videoRewindProperties![index]
+                                        .videoRewindS ??
+                                    0)),
+                          ),
+                        );
+                      },
+                    );
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
               ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget bottomTitles(double value, TitleMeta meta) {
-    final titles = <String>[
-      '1',
-      '2',
-      '3',
-      '4',
-      '5',
-      '6',
-      '7',
-      '8',
-      '9',
-      '10',
-      '11',
-      '12'
-    ];
-
-    final Widget text = Text(
-      titles[value.toInt()],
-      style: const TextStyle(
-        color: Color.fromARGB(255, 0, 0, 0),
-        fontWeight: FontWeight.bold,
-        fontSize: 14,
-      ),
-    );
-
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      space: 16, //margin top
-      child: text,
-    );
-  }
-
-  BarChartGroupData makeGroupData(int x, double y1, double y2) {
-    return BarChartGroupData(
-      barsSpace: 4,
-      x: x,
-      barRods: [
-        BarChartRodData(
-          toY: y1,
-          color: widget.leftBarColor,
-          width: width,
-        ),
-        BarChartRodData(
-          toY: y2,
-          color: widget.rightBarColor,
-          width: width,
-        ),
-      ],
-    );
+            )
+          ],
+        ));
   }
 }
+
+
+// import 'package:chewie/chewie.dart';
+// import 'package:flutter/material.dart';
+// import 'package:video_player/video_player.dart';
+
+// void main() {
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Video Demo',
+//       theme: ThemeData.dark(),
+//       home: const VideoScreen(),
+//     );
+//   }
+// }
+
+// class VideoScreen extends StatefulWidget {
+//   const VideoScreen({Key? key}) : super(key: key);
+
+//   @override
+//   State<VideoScreen> createState() => _VideoScreenState();
+// }
+
+// class _VideoScreenState extends State<VideoScreen> {
+//   late VideoPlayerController videoPlayerController;
+//   late ChewieController chewieController;
+
+//   @override
+//   void initState() {
+//     super.initState();
+
+//     videoPlayerController = VideoPlayerController.network(
+//       'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+//     );
+
+//     chewieController = ChewieController(
+//       videoPlayerController: videoPlayerController,
+//       aspectRatio: 3 / 2,
+//       autoPlay: true,
+//       looping: true,
+//     );
+//   }
+
+//   @override
+//   void dispose() {
+//     super.dispose();
+//     videoPlayerController.dispose();
+//     chewieController.dispose();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('Video Demo'),
+//       ),
+//       body: Padding(
+//         padding: const EdgeInsets.all(8.0),
+//         child: AspectRatio(
+//             aspectRatio: videoPlayerController.value.aspectRatio,
+//             child: Chewie(controller: chewieController)),
+//       ),
+//       floatingActionButton: FloatingActionButton(
+//         onPressed: () {
+//           chewieController.seekTo(Duration(minutes: 2, seconds: 20));
+//         },
+//         child: const Icon(Icons.fullscreen),
+//       ),
+//     );
+//   }
+// }

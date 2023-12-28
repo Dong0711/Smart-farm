@@ -21,7 +21,7 @@ class _AnimalLodingDetailState extends State<AnimalLodingDetail> {
   late TextEditingController numberOfDiseasesControler;
   // AnimalLodging? animalLodging;
   String? lodgingName;
-  int? lodginAcreage;
+  double? lodginAcreage;
   String? animalName;
   int? numberAnimals;
   String? livstockOrigin;
@@ -115,7 +115,7 @@ class _AnimalLodingDetailState extends State<AnimalLodingDetail> {
                 onPressed: () {
                   OpenDialog();
                 },
-                child:const MyText(
+                child: const MyText(
                   text: 'Chỉnh sửa',
                   fontWeight: FontWeight.bold,
                 ),
@@ -195,7 +195,7 @@ class _AnimalLodingDetailState extends State<AnimalLodingDetail> {
     Navigator.of(context).pop();
     if (lodginAcreageControler.text.isNotEmpty) {
       setState(() {
-        lodginAcreage = int.parse(lodginAcreageControler.text);
+        lodginAcreage = double.parse(lodginAcreageControler.text);
       });
     }
     if (animalNameControler.text.isNotEmpty) {

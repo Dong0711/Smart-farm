@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:farm/ListVideoRewindPage.dart';
 import 'package:farm/page/ListFarmPage.dart';
 import 'package:farm/page/ReportPage.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,13 @@ class _MainPageState extends State<MainPage> {
       body: SafeArea(
         child: PageView(
           controller: _pageController,
-          children: const [WebSidePage(), ListFarmPage(), ReportPage(), UserPage()],
+          children: const [
+            WebSidePage(),
+            ListFarmPage(),
+            VideoRewind(),
+            ReportPage(),
+            UserPage()
+          ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -63,6 +70,16 @@ class _MainPageState extends State<MainPage> {
               activeIcon: Transform.scale(
                 scale: 1.2,
                 child: const Icon(Icons.videocam_rounded),
+              ),
+              label: 'text'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.video_file,
+                size: iconSize,
+              ),
+              activeIcon: Transform.scale(
+                scale: 1.2,
+                child: const Icon(Icons.video_file),
               ),
               label: 'text'),
           BottomNavigationBarItem(

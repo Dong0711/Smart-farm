@@ -26,7 +26,15 @@ class _ListFarmPageState extends State<ListFarmPage> {
       var jsonData = jsonDecode(response.body);
       for (var item in jsonData) {
         final farm = Farm.fromJson(item);
-        FarmInfoContainer newFarm = FarmInfoContainer(farm: farm);
+        FarmInfoContainer newFarm = FarmInfoContainer(
+          animalLodging: farm.animalLodging,
+          farmName: farm.name!,
+          farmLocal: farm.local!,
+          farmAcreage: farm.acreage!,
+          farmHumidity: farm.humidity!,
+          farmRainSalary: farm.rainSalary!,
+          farmTemperature: farm.temperature!,
+        );
         listFarm.add(newFarm);
       }
     } else {
@@ -44,12 +52,11 @@ class _ListFarmPageState extends State<ListFarmPage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
     return SingleChildScrollView(
       child: Column(
         children: [
           Container(
-            height: screenHeight * 0.15,
+            height: 150,
             decoration: BoxDecoration(gradient: AppColor.gradien[50]),
             child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -57,7 +64,7 @@ class _ListFarmPageState extends State<ListFarmPage> {
                 MyText(
                   text: "QUẢN LÝ CAMERA CỦA TRANG TRẠI",
                   color: Colors.white,
-                  fontSize: 20,
+                  fontSize: 22,
                   fontWeight: FontWeight.bold,
                 ),
               ],
