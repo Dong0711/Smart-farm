@@ -12,6 +12,27 @@ class CameraInfoContainer extends StatefulWidget {
 }
 
 class _CameraInfoContainerState extends State<CameraInfoContainer> {
+  late VlcPlayerController vlcController;
+  @override
+  void initState() {
+    super.initState();
+
+    vlcController = VlcPlayerController.network(
+        widget.animalLodging.listCameras?[0].cameraLink ?? "",
+        autoInitialize: true,
+        hwAcc: HwAcc.full,
+        autoPlay: true);
+    vlcController.setVolume(0);
+    // Workaround for stopping autoplay autoplay with first frame loaded
+  }
+
+  @override
+  void dispose() {
+    vlcController.stopRendererScanning();
+    vlcController.dispose();
+    super.dispose();
+  }
+
   // String camUrl = animalLodging.listCameras?[0].cameraLink ?? '';
   @override
   Widget build(BuildContext context) {
@@ -36,17 +57,12 @@ class _CameraInfoContainerState extends State<CameraInfoContainer> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 SizedBox(
-                  height: 90,
-                  width: 160,
-                  child: VlcPlayer(
-                    controller: VlcPlayerController.network(
-                        widget.animalLodging.listCameras?[0].cameraLink ?? "",
-                        autoInitialize: true,
-                        hwAcc: HwAcc.full,
-                        autoPlay: true),
-                    aspectRatio: 16 / 9,
-                  ),
-                ),
+                    height: 90,
+                    width: 160,
+                    child: ClipRRect(
+                      child: Image.network(
+                          'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZmFybXxlbnwwfHwwfHx8MA%3D%3D'),
+                    )),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(

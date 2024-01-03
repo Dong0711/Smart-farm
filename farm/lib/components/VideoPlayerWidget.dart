@@ -20,7 +20,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
     _controller = VlcPlayerController.network(
       widget.cameraLink,
       autoInitialize: true,
-      autoPlay: true,
+      autoPlay: true, 
       hwAcc: HwAcc.full,
       options: VlcPlayerOptions(),
     );

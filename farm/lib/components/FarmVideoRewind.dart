@@ -114,7 +114,7 @@ class _FarmVideoRewindState extends State<FarmVideoRewind> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(8),
                                     child: Image.network(
-                                        'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Comparison_land_area_units.svg/298px-Comparison_land_area_units.svg.png'),
+                                        'https://images.unsplash.com/photo-1560493676-04071c5f467b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
                                   ),
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,

@@ -26,6 +26,7 @@ class _VideoContainerState extends State<VideoContainer> {
         autoPlay: true,
         hwAcc: HwAcc.full,
         options: VlcPlayerOptions());
+    _vlcPlayerController.setVolume(0);
   }
 
   @override

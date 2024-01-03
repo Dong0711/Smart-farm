@@ -25,7 +25,7 @@ class ReportPage extends StatefulWidget {
 
 class _ReportPageState extends State<ReportPage> {
   // late ChartData chartData;
-  List animals_disease_data = [];
+  List<dynamic> animals_disease_data = [];
   List grow_and_feding_data = [];
   List rain_salary_data = [];
   List temp_data = [];
@@ -38,8 +38,12 @@ class _ReportPageState extends State<ReportPage> {
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
       var list_data = jsonData['animals_disease_data'];
-      animals_disease_data =
-          list_data.map((e) => (e as num).toDouble()).toList();
+      print(list_data);
+
+      animals_disease_data = jsonData['animals_disease_data'];
+      print(animals_disease_data.length);
+      print(list_data);
+
       list_data = jsonData['grow_and_feding_data'];
       grow_and_feding_data = list_data
           .map((e) => (e as List<dynamic>)
@@ -96,110 +100,228 @@ class _ReportPageState extends State<ReportPage> {
                 future: loadData(),
                 builder: (context, snapsort) {
                   if (snapsort.connectionState == ConnectionState.done) {
-                    return Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 20, right: 20, left: 20, bottom: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    return Column(children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 20, right: 20, left: 20, bottom: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            const MyText(
+                              text: "Thời gian",
+                              fontWeight: FontWeight.bold,
+                              // color: Colors.white,
+                            ),
+                            Container(
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(10)),
+                                width: 120,
+                                height: 35,
+                                child: TextButton(
+                                  onPressed: () {
+                                    showCupertinoModalPopup(
+                                        context: context,
+                                        builder: (BuildContext context) =>
+                                            SizedBox(
+                                                height: 120,
+                                                child: CupertinoDatePicker(
+                                                    mode:
+                                                        CupertinoDatePickerMode
+                                                            .date,
+                                                    //  use24hFormat: true,
+                                                    backgroundColor:
+                                                        Colors.white,
+                                                    initialDateTime:
+                                                        DateTime.now(),
+                                                    onDateTimeChanged:
+                                                        (DateTime newTime) {
+                                                      // print(newTime);
+                                                      setState(() {
+                                                        startDay = DateFormat(
+                                                                'dd-MM-yyy')
+                                                            .format(newTime);
+                                                      });
+                                                    })
+                                                // onDateTimeChanged:
+                                                ));
+                                  },
+                                  child: MyText(
+                                    text: startDay,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                )),
+                            const MyText(
+                              text: '--',
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            Container(
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(10)),
+                                width: 120,
+                                height: 35,
+                                child: TextButton(
+                                  onPressed: () {
+                                    showCupertinoModalPopup(
+                                        context: context,
+                                        builder: (BuildContext context) =>
+                                            SizedBox(
+                                                height: 120,
+                                                child: CupertinoDatePicker(
+                                                    mode:
+                                                        CupertinoDatePickerMode
+                                                            .date,
+                                                    //  use24hFormat: true,
+                                                    backgroundColor:
+                                                        Colors.white,
+                                                    initialDateTime:
+                                                        DateTime.now(),
+                                                    onDateTimeChanged:
+                                                        (DateTime newTime) {
+                                                      // print(newTime);
+                                                      setState(() {
+                                                        endDay = DateFormat(
+                                                                'dd-MM-yyy')
+                                                            .format(newTime);
+                                                      });
+                                                    })
+                                                // onDateTimeChanged:
+                                                ));
+                                  },
+                                  child: MyText(
+                                    text: endDay,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                )),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.all(10),
+                        padding: const EdgeInsets.only(top: 20, bottom: 20),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Color.fromARGB(80, 0, 0, 0),
+                                blurRadius: 15.0,
+                                spreadRadius: 5,
+                                offset: Offset(5, 5))
+                          ],
+                        ),
+                        height: 300,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const MyText(
+                              text: 'BIỂU ĐỒ TỈ LỆ SINH TỬ VẬT NUÔI (con)',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                            SizedBox(
+                              height: 200,
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    AspectRatio(
+                                        aspectRatio: 1,
+                                        child: PieChart(pieChartWidget
+                                            .pieChartData(animals_disease_data
+                                                .map((e) => e as int)
+                                                .toList()))),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Indicator(
+                                            color: const Color.fromRGBO(
+                                                44, 82, 39, 1),
+                                            text:
+                                                'Con bình thường (${animals_disease_data[0]})',
+                                            isSquare: true),
+                                        Indicator(
+                                          color: const Color.fromRGBO(
+                                              252, 215, 51, 1),
+                                          text:
+                                              'con bệnh (${animals_disease_data[0]})',
+                                          isSquare: true,
+                                        ),
+                                        Indicator(
+                                          color: Colors.red,
+                                          text:
+                                              'con chết (${animals_disease_data[0]})',
+                                          isSquare: true,
+                                        ),
+                                      ],
+                                    )
+                                  ]),
+                            ),
+                            const MyText(
+                              text: 'Tổng: 100 con',
+                              fontWeight: FontWeight.bold,
+                              // fontSize: 16,
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        margin: const EdgeInsets.all(10),
+                        padding: const EdgeInsets.only(top: 20, bottom: 20),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Color.fromARGB(80, 0, 0, 0),
+                                blurRadius: 15.0,
+                                spreadRadius: 5,
+                                offset: Offset(5, 5))
+                          ],
+                        ),
+                        height: 300,
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const MyText(
-                                text: "Thời gian",
+                                text: 'BIỂU ĐỒ TỈ LỆ PHÁT TRIỂN VÀ THỨC ĂN',
                                 fontWeight: FontWeight.bold,
-                                // color: Colors.white,
+                                fontSize: 20,
                               ),
-                              Container(
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                      color: Colors.black,
-                                      borderRadius: BorderRadius.circular(10)),
-                                  width: 120,
-                                  height: 35,
-                                  child: TextButton(
-                                    onPressed: () {
-                                      showCupertinoModalPopup(
-                                          context: context,
-                                          builder: (BuildContext context) =>
-                                              SizedBox(
-                                                  height: 120,
-                                                  child: CupertinoDatePicker(
-                                                      mode:
-                                                          CupertinoDatePickerMode
-                                                              .date,
-                                                      //  use24hFormat: true,
-                                                      backgroundColor:
-                                                          Colors.white,
-                                                      initialDateTime:
-                                                          DateTime.now(),
-                                                      onDateTimeChanged:
-                                                          (DateTime newTime) {
-                                                        // print(newTime);
-                                                        setState(() {
-                                                          startDay = DateFormat(
-                                                                  'dd-MM-yyy')
-                                                              .format(newTime);
-                                                        });
-                                                      })
-                                                  // onDateTimeChanged:
-                                                  ));
-                                    },
-                                    child: MyText(
-                                      text: startDay,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  )),
-                              const MyText(
-                                text: '--',
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              Container(
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                      color: Colors.black,
-                                      borderRadius: BorderRadius.circular(10)),
-                                  width: 120,
-                                  height: 35,
-                                  child: TextButton(
-                                    onPressed: () {
-                                      showCupertinoModalPopup(
-                                          context: context,
-                                          builder: (BuildContext context) =>
-                                              SizedBox(
-                                                  height: 120,
-                                                  child: CupertinoDatePicker(
-                                                      mode:
-                                                          CupertinoDatePickerMode
-                                                              .date,
-                                                      //  use24hFormat: true,
-                                                      backgroundColor:
-                                                          Colors.white,
-                                                      initialDateTime:
-                                                          DateTime.now(),
-                                                      onDateTimeChanged:
-                                                          (DateTime newTime) {
-                                                        // print(newTime);
-                                                        setState(() {
-                                                          endDay = DateFormat(
-                                                                  'dd-MM-yyy')
-                                                              .format(newTime);
-                                                        });
-                                                      })
-                                                  // onDateTimeChanged:
-                                                  ));
-                                    },
-                                    child: MyText(
-                                      text: endDay,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  )),
-                            ],
-                          ),
-                        ),
-                        Container(
+                              SizedBox(
+                                  height: 200,
+                                  child: Stack(children: <Widget>[
+                                    AspectRatio(
+                                        aspectRatio: 2,
+                                        child: Padding(
+                                            padding: const EdgeInsets.only(
+                                              right: 25,
+                                              left: 12,
+                                              top: 24,
+                                              bottom: 12,
+                                            ),
+                                            child: lineChartWidgets2.LineChart(
+                                                grow_and_feding_data)))
+                                  ]))
+                            ]),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                          alignment: Alignment.center,
                           margin: const EdgeInsets.all(10),
                           padding: const EdgeInsets.only(top: 20, bottom: 20),
                           decoration: BoxDecoration(
@@ -218,75 +340,44 @@ class _ReportPageState extends State<ReportPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const MyText(
-                                text: 'BIỂU ĐỒ TỈ LỆ SINH TỬ VẬT NUÔI (con)',
+                                text: 'BIỂU ĐỒ TỈ LỆ MƯA (%)',
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
                               ),
                               SizedBox(
                                 height: 200,
-                                child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      AspectRatio(
-                                          aspectRatio: 1,
-                                          child: PieChart(
-                                              pieChartWidget.pieChartData(
-                                                  animals_disease_data))
-
-                                          // .pieChartData([1000, 100, 3]))
-                                          // PieChart(PieChartData(
-                                          //     startDegreeOffset: -90,
-                                          //     borderData: FlBorderData(
-                                          //         show: true,
-                                          //         border: Border.all(
-                                          //             width: 10,
-                                          //             color: Colors.black,
-                                          //             style: BorderStyle.solid)),
-                                          //     sectionsSpace: 0,
-                                          //     centerSpaceRadius: 0,
-                                          //     sections: showingSections())),
-                                          ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Indicator(
-                                              color: const Color.fromRGBO(
-                                                  44, 82, 39, 1),
-                                              text:
-                                                  'Con bình thường (${animals_disease_data[0]})',
-                                              isSquare: true),
-                                          Indicator(
-                                            color: const Color.fromRGBO(
-                                                252, 215, 51, 1),
-                                            text:
-                                                'con bệnh (${animals_disease_data[0]})',
-                                            isSquare: true,
-                                          ),
-                                          Indicator(
-                                            color: Colors.red,
-                                            text:
-                                                'con chết (${animals_disease_data[0]})',
-                                            isSquare: true,
-                                          ),
-                                        ],
-                                      )
-                                    ]),
+                                child: Stack(
+                                  children: <Widget>[
+                                    AspectRatio(
+                                      aspectRatio: 2,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                          right: 25,
+                                          left: 12,
+                                          top: 24,
+                                          bottom: 12,
+                                        ),
+                                        child: LineChart(
+                                          lineChartWidgets.mainData(
+                                              rain_salary_data, 0),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              const MyText(
-                                text: 'Tổng: 100 con',
+                              MyText(
+                                text:
+                                    'Trung bình: ${(rain_salary_data.reduce((value, element) => value + element) / rain_salary_data.length).toStringAsFixed(1)}%',
                                 fontWeight: FontWeight.bold,
-                                // fontSize: 16,
-                              )
+                                fontSize: 20,
+                              ),
                             ],
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Container(
+                          )),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Container(
                           alignment: Alignment.center,
                           margin: const EdgeInsets.all(10),
                           padding: const EdgeInsets.only(top: 20, bottom: 20),
@@ -303,204 +394,101 @@ class _ReportPageState extends State<ReportPage> {
                           ),
                           height: 300,
                           child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const MyText(
-                                  text: 'BIỂU ĐỒ TỈ LỆ PHÁT TRIỂN VÀ THỨC ĂN',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
-                                SizedBox(
-                                    height: 200,
-                                    child: Stack(children: <Widget>[
-                                      AspectRatio(
-                                          aspectRatio: 2,
-                                          child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                right: 25,
-                                                left: 12,
-                                                top: 24,
-                                                bottom: 12,
-                                              ),
-                                              child:
-                                                  lineChartWidgets2.LineChart(
-                                                      grow_and_feding_data)))
-                                    ]))
-                              ]),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Container(
-                            alignment: Alignment.center,
-                            margin: const EdgeInsets.all(10),
-                            padding: const EdgeInsets.only(top: 20, bottom: 20),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(30),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Color.fromARGB(80, 0, 0, 0),
-                                    blurRadius: 15.0,
-                                    spreadRadius: 5,
-                                    offset: Offset(5, 5))
-                              ],
-                            ),
-                            height: 300,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const MyText(
-                                  text: 'BIỂU ĐỒ TỈ LỆ MƯA (%)',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
-                                SizedBox(
-                                  height: 200,
-                                  child: Stack(
-                                    children: <Widget>[
-                                      AspectRatio(
-                                        aspectRatio: 2,
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                            right: 25,
-                                            left: 12,
-                                            top: 24,
-                                            bottom: 12,
-                                          ),
-                                          child: LineChart(
-                                            lineChartWidgets.mainData(
-                                                rain_salary_data, 0),
-                                          ),
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const MyText(
+                                text: 'BIỂU ĐỒ NHIỆT ĐỘ (℃)',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                              SizedBox(
+                                height: 200,
+                                child: Stack(
+                                  children: <Widget>[
+                                    AspectRatio(
+                                      aspectRatio: 2,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                          right: 25,
+                                          left: 12,
+                                          top: 24,
+                                          bottom: 12,
+                                        ),
+                                        child: LineChart(
+                                          lineChartWidgets.mainData(
+                                              temp_data, 1),
                                         ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                                MyText(
-                                  text:
-                                      'Trung bình: ${(rain_salary_data.reduce((value, element) => value + element) / rain_salary_data.length).toStringAsFixed(1)}%',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
-                              ],
-                            )),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Container(
-                            alignment: Alignment.center,
-                            margin: const EdgeInsets.all(10),
-                            padding: const EdgeInsets.only(top: 20, bottom: 20),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(30),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Color.fromARGB(80, 0, 0, 0),
-                                    blurRadius: 15.0,
-                                    spreadRadius: 5,
-                                    offset: Offset(5, 5))
-                              ],
-                            ),
-                            height: 300,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const MyText(
-                                  text: 'BIỂU ĐỒ NHIỆT ĐỘ (℃)',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
-                                SizedBox(
-                                  height: 200,
-                                  child: Stack(
-                                    children: <Widget>[
-                                      AspectRatio(
-                                        aspectRatio: 2,
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                            right: 25,
-                                            left: 12,
-                                            top: 24,
-                                            bottom: 12,
-                                          ),
-                                          child: LineChart(
-                                            lineChartWidgets.mainData(
-                                                temp_data, 1),
-                                          ),
+                              ),
+                              MyText(
+                                text:
+                                    'Trung bình: ${(temp_data.reduce((value, element) => value + element) / rain_salary_data.length).toStringAsFixed(1)}%',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ],
+                          )),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                          alignment: Alignment.center,
+                          margin: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.only(top: 20, bottom: 20),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(30),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Color.fromARGB(80, 0, 0, 0),
+                                  blurRadius: 15.0,
+                                  spreadRadius: 5,
+                                  offset: Offset(5, 5))
+                            ],
+                          ),
+                          height: 300,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const MyText(
+                                text: 'BIỂU ĐỒ ĐỘ ẨM (%)',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                              SizedBox(
+                                height: 200,
+                                child: Stack(
+                                  children: <Widget>[
+                                    AspectRatio(
+                                      aspectRatio: 2,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                          right: 25,
+                                          left: 12,
+                                          top: 24,
+                                          bottom: 12,
+                                        ),
+                                        child: LineChart(
+                                          lineChartWidgets.mainData(
+                                              humidity_data, 2),
                                         ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                                MyText(
-                                  text:
-                                      'Trung bình: ${(temp_data.reduce((value, element) => value + element) / rain_salary_data.length).toStringAsFixed(1)}%',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
-                              ],
-                            )),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Container(
-                            alignment: Alignment.center,
-                            margin: const EdgeInsets.all(10),
-                            padding: const EdgeInsets.only(top: 20, bottom: 20),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(30),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Color.fromARGB(80, 0, 0, 0),
-                                    blurRadius: 15.0,
-                                    spreadRadius: 5,
-                                    offset: Offset(5, 5))
-                              ],
-                            ),
-                            height: 300,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const MyText(
-                                  text: 'BIỂU ĐỒ ĐỘ ẨM (%)',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
-                                SizedBox(
-                                  height: 200,
-                                  child: Stack(
-                                    children: <Widget>[
-                                      AspectRatio(
-                                        aspectRatio: 2,
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                            right: 25,
-                                            left: 12,
-                                            top: 24,
-                                            bottom: 12,
-                                          ),
-                                          child: LineChart(
-                                            lineChartWidgets.mainData(
-                                                humidity_data, 2),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                MyText(
-                                  text:
-                                      'Trung bình: ${(humidity_data.reduce((value, element) => value + element) / rain_salary_data.length).toStringAsFixed(1)}%',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
-                              ],
-                            ))
-                      ],
-                    );
+                              ),
+                              MyText(
+                                text:
+                                    'Trung bình: ${(humidity_data.reduce((value, element) => value + element) / rain_salary_data.length).toStringAsFixed(1)}%',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ],
+                          ))
+                    ]);
                   } else {
                     return (const Center(
                       child: CircularProgressIndicator(
